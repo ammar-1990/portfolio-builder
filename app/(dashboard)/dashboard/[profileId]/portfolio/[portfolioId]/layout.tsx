@@ -25,7 +25,7 @@ where:{
         <SideBar portfolios = {portfolios} />
         </div>
        
-        <main>
+        <main className='p-8 flex-1'>
         {children}
         </main>
    

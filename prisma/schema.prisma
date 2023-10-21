@@ -19,7 +19,7 @@ model Profile {
   email         String @unique
   name          String
   imageUrl      String?
-  country       String?
+  
 
   portfolios   Portfolio[]
 
@@ -37,6 +37,7 @@ model Portfolio {
   title         String?
   bio           String?
   imageUrl      String?
+  country       String?
 
   profileId     String @db.ObjectId
   profile       Profile @relation(fields: [profileId],references: [id],onDelete: Cascade)

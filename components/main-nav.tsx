@@ -5,11 +5,14 @@ import { Settings } from 'lucide-react';
 import AvatarComponent from './avatar-component';
 import LoginButton from './login-button';
 import { getCurrentProfile } from '@/lib/getCurrentProfile';
+import MainnavLinks from './mainnav-links';
 
 type Props = {}
 
 const MainNav =async (props: Props) => {
   const currentProfile = await getCurrentProfile();
+
+
 
   return (
     <div className="flex items-center h-20 justify-between px-6 sm:px-12 md:px-20 lg:px-28">
@@ -18,6 +21,8 @@ const MainNav =async (props: Props) => {
         <Image src={"/logo.png"} alt="logo" fill className="object-contain" />
       </div>
       </Link>
+
+    <MainnavLinks />
      
       {currentProfile ? (
       

@@ -14,7 +14,7 @@ type Props = {
 };
 
 const SideBar = ({ portfolios }: Props) => {
-  console.log(portfolios);
+
 
   const { onOpen } = useModal();
   const params = useParams();
@@ -34,7 +34,7 @@ const SideBar = ({ portfolios }: Props) => {
             className={cn(
               "p-2 rounded-md text-zinc-800  cursor-pointer mb-1 capitalize",
               params.portfolioId === portfolio.id
-                ? "bg-gray-100 "
+                ? "bg-gray-100 font-semibold"
                 : "hover:bg-gray-50"
             )}
             key={portfolio.id}

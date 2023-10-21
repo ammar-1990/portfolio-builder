@@ -2,11 +2,12 @@ import { create } from 'zustand'
 
 
 
-type ModalType = 'initial-modal' | 'login-modal'
+type ModalType = 'initial-modal' | 'login-modal' | 'alert-modal'
 
 
 type DataType = {
   refresh?:boolean
+  url?:string
   }
 type Store = {
   open: boolean,

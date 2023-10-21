@@ -52,7 +52,7 @@ const form = useForm<z.infer<typeof formSchema>>({
     },
   })
   const { toast } = useToast()
-  const isError = form.getFieldState('name').error
+
   const isLoading = form.formState.isSubmitting
 
   const params = useParams()
@@ -99,7 +99,7 @@ const isOpen = open && modalType === 'initial-modal'
             <FormItem>
             
               <FormControl>
-                <Input placeholder="Photography" {...field} className={cn(isError && 'border-rose-500 focus-visible:ring-rose-500')} />
+                <Input placeholder="Photography" {...field}  />
               </FormControl>
        
               <FormMessage />

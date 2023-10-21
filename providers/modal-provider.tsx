@@ -1,5 +1,6 @@
 'use client'
 
+import AlertModal from '@/components/modals/alert-modal'
 import InitialModal from '@/components/modals/initial-modal'
 import LoginModal from '@/components/modals/login-modal'
 import React, {useState, useEffect} from 'react'
@@ -21,6 +22,7 @@ const ModalProvider = (props: Props) => {
    <>
    <InitialModal />
    <LoginModal />
+   <AlertModal />
    </>
   )
 }
