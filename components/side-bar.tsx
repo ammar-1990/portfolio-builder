@@ -32,7 +32,7 @@ const SideBar = ({ portfolios }: Props) => {
               )
             }
             className={cn(
-              "p-2 rounded-md text-zinc-800  cursor-pointer mb-1 capitalize",
+              "p-4 rounded-md text-zinc-800  cursor-pointer mb-1 capitalize",
               params.portfolioId === portfolio.id
                 ? "bg-gray-100 font-semibold"
                 : "hover:bg-gray-50"

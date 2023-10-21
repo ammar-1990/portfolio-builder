@@ -7,6 +7,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { v4 as uuidv4 } from "uuid";
 import {
   Form,
   FormControl,
@@ -16,6 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import getCountryFlag from "react-world-flags";
 
 import {
   Select,
@@ -32,6 +34,9 @@ import { Textarea } from "./ui/textarea";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/modal-hook";
+import { useState } from "react";
+import { XIcon } from "lucide-react";
+import Image from "next/image";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -41,12 +46,16 @@ const formSchema = z.object({
   bio: z.string().optional(),
   imageUrl: z.string().optional(),
   country: z.string().optional(),
+  skills: z
+    .array(z.string())
+    .max(10, { message: "Maximum of 10 skills" })
+    .optional(),
 });
 
 type Props = {
   portfolio: Portfolio | null;
 
-  names: string[] | undefined;
+  names: any | undefined;
 };
 
 const AboutForm = ({ portfolio, names }: Props) => {
@@ -58,12 +67,14 @@ const AboutForm = ({ portfolio, names }: Props) => {
       bio: portfolio?.bio || "",
       imageUrl: portfolio?.imageUrl || "",
       country: portfolio?.country || "",
+      skills: portfolio?.skills || [],
     },
   });
   const isLoading = form.formState.isSubmitting;
 
   const params = useParams();
   const router = useRouter();
+  const [skillInput, setSkillInput] = useState("");
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
@@ -88,20 +99,21 @@ const AboutForm = ({ portfolio, names }: Props) => {
   }
 
   let noChanges =
-    portfolio?.name === form.getValues("name").trim() &&
+    portfolio?.name === form.getValues("name") &&
     (portfolio?.title || "") === form.getValues("title") &&
     (portfolio?.bio || "") === form.getValues("bio") &&
     (portfolio?.imageUrl || "") === form.getValues("imageUrl") &&
-    (portfolio?.country || "") === form.getValues("country");
+    (portfolio?.country || "") === form.getValues("country") &&
+    portfolio?.skills.join() === form.getValues("skills")?.join();
 
-    const {onOpen} = useModal()
+  const { onOpen } = useModal();
 
   return (
-    <div className="mt-10 flex-1">
+    <div className="mt-10 flex-1  ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 flex flex-col h-full justify-between"
+          className="space-y-4 flex flex-col h-full justify-between p-1"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3">
             <FormField
@@ -152,13 +164,19 @@ const AboutForm = ({ portfolio, names }: Props) => {
                     </FormControl>
                     <SelectContent>
                       <ScrollArea className="h-[200px] ">
-                        {names?.map((name) => (
+                        {names?.map((name: any) => (
                           <SelectItem
-                            className="cursor-pointer"
-                            key={name}
-                            value={name}
+                            className="cursor-pointer "
+                            key={name.name}
+                            value={name.name}
                           >
-                            {name}
+                            <div className="flex items-center gap-x-3">
+                            <img  alt="flag" src={name.flag} className="object-contain w-5 h-5 " />
+                          
+                          {name.name}
+                            </div>
+                        
+                            
                           </SelectItem>
                         ))}
                       </ScrollArea>
@@ -174,12 +192,12 @@ const AboutForm = ({ portfolio, names }: Props) => {
               control={form.control}
               name="bio"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-2 flex flex-col gap-1">
                   <FormLabel>Bio</FormLabel>
                   <FormControl>
                     <Textarea
                       placeholder="Describe your career..."
-                      className="resize-none"
+                      className="resize-none flex-1"
                       {...field}
                     />
                   </FormControl>
@@ -206,22 +224,69 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="skills"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Skills</FormLabel>
+                  <div className="flex items-center gap-x-2">
+                    <FormControl>
+                      <Input
+                        placeholder="Programming.."
+                        value={skillInput}
+                        onChange={(e) => setSkillInput(e.target.value)}
+                      />
+                    </FormControl>
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        field.onChange([...field.value!, skillInput]);
+                        setSkillInput("");
+                      }}
+                      disabled={!skillInput || field.value?.length! >= 10}
+                    >
+                      Add
+                    </Button>
+                  </div>
+
+                  <div className=" flex flex-wrap gap-3 items-center w-full">
+                    {field.value?.map((value) => (
+                      <span
+                        key={uuidv4()}
+                        className="px-3 py-1 border rounded-full text-xs flex items-center gap-x-3 capitalize bg-black text-white"
+                      >
+                        {value}
+                        <XIcon
+                          className="w-4 h-4 cursor-pointer "
+                          onClick={() => {
+                            field.onChange([
+                              ...field.value?.filter((item) => item !== value)!,
+                            ]);
+                          }}
+                        />
+                      </span>
+                    ))}
+                  </div>
+                  {field.value?.length! >= 10 && (
+                    <p className="py-1 text-sm text-rose-500">
+                      You can add 10 skills only
+                    </p>
+                  )}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <div className="flex items-center gap-x-4">
             {" "}
-            <Button
-              disabled={isLoading || noChanges}
-             
-              type="submit"
-            >
+            <Button disabled={isLoading || noChanges} type="submit">
               Save changes
             </Button>
             <Button
-            onClick={()=>onOpen('alert-modal')}
-            type="button"
-          variant={'destructive'}
-             
-            
+              onClick={() => onOpen("alert-modal")}
+              type="button"
+              variant={"destructive"}
             >
               Delete portfolio
             </Button>

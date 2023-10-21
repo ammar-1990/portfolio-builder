@@ -12,7 +12,7 @@ const MainnavLinks = (props: Props) => {
 
   const links = [
     {
-      label: "Bio",
+      label: "Main",
       url: `/dashboard/${params.profileId}/portfolio/${params.portfolioId}`,
       active:
         pathname ===
@@ -32,13 +32,7 @@ const MainnavLinks = (props: Props) => {
         pathname ===
         `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
     },
-    {
-      label: "skills",
-      url: `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/skills`,
-      active:
-        pathname ===
-        `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/skills`,
-    },
+   
   ];
 
   return (
