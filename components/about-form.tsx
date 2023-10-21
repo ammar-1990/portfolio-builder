@@ -34,7 +34,7 @@ import { Textarea } from "./ui/textarea";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/modal-hook";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { XIcon } from "lucide-react";
 import Image from "next/image";
 
@@ -107,6 +107,35 @@ const AboutForm = ({ portfolio, names }: Props) => {
     portfolio?.skills.join() === form.getValues("skills")?.join();
 
   const { onOpen } = useModal();
+
+  const handleKeyPress = (event:KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleButtonClick();
+    }
+  };
+
+  const handleButtonClick = () => {
+   const myArray = form.getValues('skills')
+ form.setValue('skills',[...myArray!,skillInput])
+ setSkillInput('')
+  };
+
+  useEffect(()=>{
+
+   const handleEvent = (e:KeyboardEvent)=>{
+    if(e.key==='Enter'){
+     e.preventDefault()
+      handleButtonClick()
+      console.log(skillInput)
+    }
+
+   }
+
+   document.addEventListener('keydown',handleEvent)
+
+   return ()=>document.removeEventListener('keydown',handleEvent)
+  },[handleButtonClick])
 
   return (
     <div className="mt-10 flex-1  ">
@@ -235,15 +264,13 @@ const AboutForm = ({ portfolio, names }: Props) => {
                       <Input
                         placeholder="Programming.."
                         value={skillInput}
-                        onChange={(e) => setSkillInput(e.target.value)}
+                        onChange={(e) => {setSkillInput(e.target.value)}}
                       />
                     </FormControl>
                     <Button
+                    
                       type="button"
-                      onClick={() => {
-                        field.onChange([...field.value!, skillInput]);
-                        setSkillInput("");
-                      }}
+                      onClick={handleButtonClick}
                       disabled={!skillInput || field.value?.length! >= 10}
                     >
                       Add
