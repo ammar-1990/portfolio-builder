@@ -116,6 +116,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
   };
 
   const handleButtonClick = () => {
+    if(!skillInput) return
    const myArray = form.getValues('skills')
  form.setValue('skills',[...myArray!,skillInput])
  setSkillInput('')
