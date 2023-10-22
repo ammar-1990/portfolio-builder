@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 
 type Props = {params:{portfolioId:string}}
-
+export const revalidate = 0
 const page = async({params}: Props) => {
   const portfolio = await db.portfolio.findUnique({
     where:{

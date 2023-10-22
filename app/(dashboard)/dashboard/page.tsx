@@ -4,7 +4,7 @@ import { profile } from 'console'
 import { redirect} from 'next/navigation'
 
 type Props = {}
-
+export const revalidate = 0
 const DashBoardPage =async (props: Props) => {
   const currentProfile = await getCurrentProfile()
   if(!currentProfile) return redirect('/')

@@ -7,7 +7,7 @@ type Props = {
     children:React.ReactNode,
     params:{profileId:string}
 }
-
+export const revalidate = 0
 const ProfileLayout =async ({children,params}: Props) => {
 
 const currentProfile = await getCurrentProfile()

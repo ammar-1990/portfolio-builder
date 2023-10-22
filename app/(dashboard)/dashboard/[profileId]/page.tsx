@@ -6,7 +6,7 @@ import {redirect} from 'next/navigation'
 type Props = {
     params:{profileId:string}
 }
-
+export const revalidate = 0
 const page = async ({params}: Props) => {
     const portfolio = await db.portfolio.findFirst({
         where:{

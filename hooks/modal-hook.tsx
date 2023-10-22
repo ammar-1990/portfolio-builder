@@ -8,6 +8,8 @@ type ModalType = 'initial-modal' | 'login-modal' | 'alert-modal'
 type DataType = {
   refresh?:boolean
   url?:string
+  back?:string,
+  message?:string
   }
 type Store = {
   open: boolean,

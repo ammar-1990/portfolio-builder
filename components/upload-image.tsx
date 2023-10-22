@@ -11,7 +11,7 @@ type Props = {
   disabled: boolean;
   onChange: (value: string) => void;
   onRemove: () => void;
-  value: string;
+  value: string ;
 };
 
 const ImageUpload = ({ disabled, onChange, onRemove, value }: Props) => {
@@ -52,10 +52,10 @@ return <div role="button"
 
 
 onClick={onClick}
-className=" w-[200px] aspect-square overflow-hidden  text-gray-400 border border-dashed rounded-xl flex flex-col items-center"
+className=" w-[200px] aspect-square overflow-hidden relative text-gray-400 border-[2px] border-dashed rounded-xl flex flex-col items-center"
 >
-    <ImagePlus className="w-full h-full mr-3" />
-    <p>Add Image</p>
+    <Image src='/placeholder.jpg' fill alt='placehoder' className="object-contain" />
+    <p className="mt-auto">Add Image</p>
    
 </div>
 }}

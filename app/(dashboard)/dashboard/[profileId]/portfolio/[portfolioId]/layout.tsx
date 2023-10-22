@@ -8,7 +8,7 @@ type Props = {
     children:React.ReactNode,
     params:{profileId:string}
 }
-
+export const revalidate = 0
 const PortfolioLayout =async ({children,params}: Props) => {
   const portfolios = await db.portfolio.findMany({
 where:{

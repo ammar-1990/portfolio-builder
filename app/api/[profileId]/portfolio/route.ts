@@ -10,10 +10,10 @@ export async function POST(req:Request,{params}:{params:{profileId:string}}){
         if(!currentPortfolio) return new NextResponse('Unauthenticated',{status:401})
 const {profileId} = params
 
-if(!profileId) return new NextResponse('portfolio Id is required',{status:400})
+if(!profileId) return new NextResponse('profile Id is required',{status:400})
 
 const {name} = await req.json()
-if(!name) return new NextResponse('profile Id name is required',{status:400})
+if(!name) return new NextResponse(' name is required',{status:400})
 
 const portfolio = await db.portfolio.create({
     data:{

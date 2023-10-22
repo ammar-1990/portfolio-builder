@@ -35,7 +35,7 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/modal-hook";
 import { useEffect, useState } from "react";
-import { XIcon } from "lucide-react";
+import { Loader, XIcon } from "lucide-react";
 import Image from "next/image";
 
 const formSchema = z.object({
@@ -98,13 +98,15 @@ const AboutForm = ({ portfolio, names }: Props) => {
     }
   }
 
-  let noChanges =
-    portfolio?.name === form.getValues("name") &&
-    (portfolio?.title || "") === form.getValues("title") &&
-    (portfolio?.bio || "") === form.getValues("bio") &&
-    (portfolio?.imageUrl || "") === form.getValues("imageUrl") &&
-    (portfolio?.country || "") === form.getValues("country") &&
-    portfolio?.skills.join() === form.getValues("skills")?.join();
+  // let noChanges =
+  //   portfolio?.name === form.getValues("name") &&
+  //   (portfolio?.title || "") === form.getValues("title") &&
+  //   (portfolio?.bio || "") === form.getValues("bio") &&
+  //   (portfolio?.imageUrl || "") === form.getValues("imageUrl") &&
+  //   (portfolio?.country || "") === form.getValues("country") &&
+  //   portfolio?.skills.join() === form.getValues("skills")?.join();
+
+  // Task: refactor noCHanges
 
   const { onOpen } = useModal();
 
@@ -140,11 +142,13 @@ const AboutForm = ({ portfolio, names }: Props) => {
 
   return (
     <div className="mt-10 flex-1  ">
+   
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-4 flex flex-col h-full justify-between p-1"
         >
+           <ScrollArea className="max-h-[450px] p-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3">
             <FormField
               control={form.control}
@@ -306,13 +310,15 @@ const AboutForm = ({ portfolio, names }: Props) => {
               )}
             />
           </div>
+          </ScrollArea>
           <div className="flex items-center gap-x-4">
             {" "}
-            <Button disabled={isLoading || noChanges} type="submit">
+            <Button disabled={isLoading } type="submit">
               Save changes
+              {isLoading && <Loader className="w-4 h-4 ml-2 animate-spin" />}
             </Button>
             <Button
-              onClick={() => onOpen("alert-modal")}
+              onClick={() => onOpen("alert-modal",{url:`/api/${params.profileId}/${params.portfolioId}`,back:'/dashboard',message:'Portfolio'})}
               type="button"
               variant={"destructive"}
             >

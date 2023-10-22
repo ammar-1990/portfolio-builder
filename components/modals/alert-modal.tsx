@@ -28,21 +28,21 @@ const AlertModal = (props: Props) => {
   const handleClick = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/${params.profileId}/${params.portfolioId}`);
+      await axios.delete(data?.url!);
       router.refresh();
-      router.push('/dashboard')
+      router.push(data?.back!)
 
       toast({
         variant: "default",
-        title: "Delete portfolio",
-        description: "Portfolio deleted",
+        title: `Delete ${data?.message}`,
+        description: `${data?.message} deleted`,
       });
     } catch (error) {
       console.log(error);
       toast({
         variant: "destructive",
-        title: "Delete portfolio",
-        description: "Something went wrong",
+        title: `Delete ${data?.message}`,
+        description: `Something went wrong`,
       });
     } finally {
       setIsLoading(false);
@@ -57,7 +57,7 @@ const AlertModal = (props: Props) => {
           <DialogTitle>Are you absolutely sure?</DialogTitle>
           <DialogDescription>
             This action cannot be undone. This will permanently delete your
-            portfolio and remove your its from our servers.
+            {` ${data?.message}`} and remove your its from our servers.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
