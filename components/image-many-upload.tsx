@@ -25,7 +25,7 @@ const ImageManyUpload = ({ disabled, onChange, onRemove, value }: Props) => {
     onChange(result.info.secure_url);
   };
 
-  if (!mounted) return <div className="self-center flex items-center justify-center"><Skeleton className="w-[200px] aspect-square rounded-xl" /></div>
+  if (!mounted) return <div className="self-start flex items-center justify-center"><Skeleton className="w-[200px] aspect-square rounded-xl" /></div>
 
   return <div className="flex flex-col gap-y-3">
     <div className="flex items-center   flex-wrap gap-x-2">
