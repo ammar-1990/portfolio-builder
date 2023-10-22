@@ -277,7 +277,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                       </Button>
                     </div>
 
-                    <div className=" flex flex-wrap gap-3 items-center w-full">
+                    <div className=" flex flex-wrap gap-1 items-center w-full">
                       {field.value?.map((value) => (
                         <span
                           key={uuidv4()}
