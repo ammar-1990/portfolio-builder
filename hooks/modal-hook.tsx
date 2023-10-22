@@ -2,7 +2,7 @@ import { create } from 'zustand'
 
 
 
-type ModalType = 'initial-modal' | 'login-modal' | 'alert-modal'
+type ModalType = 'initial-modal' | 'login-modal' | 'alert-modal' |'image-modal'
 
 
 type DataType = {

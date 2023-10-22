@@ -80,3 +80,12 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+
+.myScroll::-webkit-scrollbar {
+  @apply w-2
+}
+
+.myScroll::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 rounded-full
+}

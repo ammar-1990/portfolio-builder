@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { v4 as uuidv4 } from "uuid";
 import {
   Form,
@@ -130,7 +130,7 @@ const ProjectForm = ({ project }: Props) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-4 flex flex-col h-full justify-between p-1"
         >
-          <ScrollArea className="max-h-[450px] ">
+          <div className="">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-3  gap-5">
             <FormField
               control={form.control}
@@ -190,7 +190,7 @@ const ProjectForm = ({ project }: Props) => {
           
            
           </div>
-          </ScrollArea>
+          </div>
           <div className="flex items-center gap-x-4">
             {" "}
             <Button disabled={isLoading } type="submit">

@@ -3,6 +3,7 @@ import SideBar from '@/components/side-bar'
 import db from '@/lib/prisma'
 import React from 'react'
 import {redirect} from 'next/navigation'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 type Props = {
     children:React.ReactNode,
@@ -25,8 +26,10 @@ where:{
         <SideBar portfolios = {portfolios} />
         </div>
        
-        <main className='p-8 flex-1'>
+       <main className='flex-1 h-[650px] p-8 overflow-y-auto   myScroll '>
+     
         {children}
+       
         </main>
    
       </div>

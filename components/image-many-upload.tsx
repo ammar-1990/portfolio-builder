@@ -6,6 +6,7 @@ import { ImageIcon, ImagePlus,Trash } from "lucide-react";
 import Image from "next/image";
 import { CldUploadWidget } from 'next-cloudinary';
 import { Skeleton } from "@/components/ui/skeleton"
+import { useModal } from "@/hooks/modal-hook";
 
 type Props = {
   disabled: boolean;
@@ -21,6 +22,8 @@ const ImageManyUpload = ({ disabled, onChange, onRemove, value }: Props) => {
     setMounted(true);
   }, []);
 
+const {onOpen} = useModal()
+
   const onUpload = (result: any) => {
     onChange(result.info.secure_url);
   };
@@ -29,21 +32,23 @@ const ImageManyUpload = ({ disabled, onChange, onRemove, value }: Props) => {
 
   return <div className="flex flex-col gap-y-3">
     <div className="flex items-center   flex-wrap gap-x-2">
-        {value.map(el=><div key={el} className="relative w-[125px] aspect-square overflow-hidden ">
+        {value.map(el=><div key={el} className="relative w-[70px] aspect-square hover:scale-105 transition cursor-pointer "
+        onClick={()=>{onOpen('image-modal',{url:el})}}
+        >
 
-<Button className="absolute top-1 right-1 z-20 "
+<Button className="absolute -top-1 -right-1 z-20 w-5 h-5 p-0 "
 variant={'destructive'}
-size={'sm'}
+
 onClick={()=>onRemove(el)}
 type="button"
 >
-    <Trash className="w-3 h-3" />
+    <Trash className="w-2 h-2" />
 </Button>
 <Image 
 alt="uploaded-image"
 src={el}
 fill
-className="object-contain rounded-md"
+className="object-contain rounded-full border"
 />
 </div>) }
 
