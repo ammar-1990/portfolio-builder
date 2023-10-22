@@ -35,7 +35,7 @@ const ProjectModal = (props: Props) => {
                 src={selected}
                 fill
                 alt="project-image"
-                className="object-cover object-top"
+                className="object-contain object-top"
               />
             </div>
           ) : (
@@ -53,8 +53,8 @@ const ProjectModal = (props: Props) => {
               <div
                 key={image.id}
                 className={cn(
-                  "w-16 h-16 rounded-full relative border overflow-hidden cursor-pointer",
-                  selected === image.url && "border-black"
+                  "w-16 h-16 rounded-full relative border overflow-hidden cursor-pointer active:scale-[0.95]  transition",
+                  selected === image.url ? "ring-1 ring-offset-2 ring-black" : 'hover:scale-105'
                 )}
                 onClick={() => setSelected(() => image.url)}
               >
@@ -62,14 +62,14 @@ const ProjectModal = (props: Props) => {
                   src={image.url}
                   alt="image-project"
                   fill
-                  className="object-contain"
+                  className="object-contain p-1"
                 />
               </div>
             ))}
           </div>
 
           <p className="px-4 rounded-full mt-4 text-neutral-600 w-fit text-xs">
-            {new Date(data?.project?.createdAt).toLocaleDateString()}
+            {new Date(data?.project?.createdAt!).toLocaleDateString()}
           </p>
 
           <div className="space-y-1 px-4">
