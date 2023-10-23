@@ -3,7 +3,7 @@ import { Experience, Portfolio, Project } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion"
+import { motion  } from "framer-motion"
 
 type Props = {
   portfolio: Portfolio & { projects: Project[]; experiences: Experience[] };
@@ -16,7 +16,7 @@ const BasicTheme = ({ portfolio }: Props) => {
         show: {
      
           transition: {
-            staggerChildren: 0.16
+            staggerChildren: 0.1
           }
         }
       }
@@ -25,6 +25,9 @@ const BasicTheme = ({ portfolio }: Props) => {
         hidden: { opacity: 0 },
         show: { opacity: 1 }
       }
+
+     
+    
 
   return (
     <main className="bg-white">
@@ -78,15 +81,15 @@ const BasicTheme = ({ portfolio }: Props) => {
       </header>
       {/* main page */}
       <div className="h-screen"/>
-      <section className="flex items-center justify-center h-screen flex-col  fixed top-0 w-screen left-0">
+      <motion.section className="flex items-center justify-center h-screen flex-col  fixed top-0 w-screen left-0">
 <motion.h2
-initial={{x:-50,opacity:0}}
-whileInView={{x:0,opacity:1}}
+initial={{x:-50,opacity:0,filter: "blur(20px)"}}
+whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
 viewport={{once:true}}
 className="text-3xl font-bold tracking-widest capitalize">{portfolio.title}</motion.h2>
 <motion.p 
-initial={{x:-50,opacity:0}}
-whileInView={{x:0,opacity:1}}
+initial={{x:-50,opacity:0,filter: "blur(20px)"}}
+whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
 transition={{delay:0.3}}
 viewport={{once:true}}
 className=" text-neutral-600 first-letter:capitalize text-center text-sm sm:text-base">{portfolio.bio}</motion.p>
@@ -104,7 +107,7 @@ className="flex items-center  w-full   justify-center gap-4 sm:gap-8 mt-10 flex-
   
    className="capitalize py-2 px-4  flex-shrink-0 bg-black text-white rounded-full sm:text-xs text-[9px]" key={skill}>{skill}</motion.div>)}
 </motion.div>
-      </section>
+      </motion.section>
 
 {/* projects */}
       <section className="h-screen my-container">
