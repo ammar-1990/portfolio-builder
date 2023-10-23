@@ -93,7 +93,7 @@ const ExperienceForm = ({ experience }: Props) => {
       toast({
         variant: "default",
         title: "Experience",
-        description: "Changes saved",
+        description:experience?  "Changes saved" : " Experience added",
       });
     } catch (error) {
       console.log(error);
