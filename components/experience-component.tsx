@@ -29,12 +29,12 @@ const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
 
   return (
     <div
-    className=' border rounded-2xl overflow-hidden h-full col-span-1  transition flex flex-col relative group active:scale-[0.99] p-3'
+    className=' border rounded-2xl overflow-hidden h-full col-span-1  transition flex flex-col relative group active:scale-[0.99] p-4'
     >
           <div className="absolute inset-0 bg-black/70 text-white flex items-center justify-center transition duration-200 opacity-0 group-hover:opacity-100 z-10 ">
         <span className="cursor-pointer flex items-center gap-x-2" onClick={()=>onOpen('experience-modal',{experience:experience})}>Preview <ZoomInIcon className="w-4 h-4" /></span>
       </div>
-        <h2 className='text-2xl font-semibold capitalize line-clamp-1'>{experience.place}</h2>
+        <h2 className='text-xl font-semibold capitalize line-clamp-1'>{experience.place}</h2>
         <div className='flex items-center gap-x-3 text-neutral-500 text-xs mt-4'>
 <span>{experience.startDate?.toLocaleDateString()}</span>
 <span>{experience.endDate?.toLocaleDateString()}</span>

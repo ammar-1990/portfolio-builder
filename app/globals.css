@@ -89,3 +89,17 @@ body,
 .myScroll::-webkit-scrollbar-thumb {
   @apply bg-neutral-300 rounded-full
 }
+
+.my-container {
+  margin: 0 auto; /* Centers the container horizontally */
+  max-width: 1200px; /* Set the maximum width for the container */
+  padding: 0 20px; /* Optional: Adds padding to the sides of the container */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .my-container {
+    max-width: 100%; /* Set the maximum width to 100% for smaller screens */
+    padding: 0 10px; /* Optional: Adjust the padding for smaller screens */
+  }
+}

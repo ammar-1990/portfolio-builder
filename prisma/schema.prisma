@@ -40,6 +40,8 @@ model Portfolio {
   country       String?
   skills        String[] @default([])
 
+  theme         String   @default("basic")
+
   profileId     String @db.ObjectId
   profile       Profile @relation(fields: [profileId],references: [id],onDelete: Cascade)
 
