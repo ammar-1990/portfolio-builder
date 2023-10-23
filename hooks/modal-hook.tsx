@@ -1,9 +1,9 @@
-import { Image, Project } from '@prisma/client'
+import { Experience, Image, Project } from '@prisma/client'
 import { create } from 'zustand'
 
 
 
-type ModalType = 'initial-modal' | 'login-modal' | 'alert-modal' |'image-modal' | 'project-modal'
+type ModalType = 'initial-modal' | 'login-modal' | 'alert-modal' |'image-modal' | 'project-modal' | 'experience-modal'
 
 
 type DataType = {
@@ -12,6 +12,7 @@ type DataType = {
   back?:string,
   message?:string,
   project?:Project & {images:Image[]}
+  experience?:Experience
   }
 type Store = {
   open: boolean,

@@ -1,6 +1,7 @@
 'use client'
 
 import AlertModal from '@/components/modals/alert-modal'
+import ExperienceModal from '@/components/modals/experience-modal'
 import ImageModal from '@/components/modals/image-modal'
 import InitialModal from '@/components/modals/initial-modal'
 import LoginModal from '@/components/modals/login-modal'
@@ -27,6 +28,7 @@ const ModalProvider = (props: Props) => {
    <AlertModal />
    <ImageModal />
    <ProjectModal />
+   <ExperienceModal />
    </>
   )
 }
