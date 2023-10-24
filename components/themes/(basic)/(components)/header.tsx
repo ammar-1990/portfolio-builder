@@ -31,7 +31,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             <Link 
             scroll
             href={"#home"}>
-              <span className="font-bold text-black text-lg  md:text-xl">
+              <span className="font-bold text-white text-lg  md:text-xl">
                 {title}
               </span>
             </Link>
