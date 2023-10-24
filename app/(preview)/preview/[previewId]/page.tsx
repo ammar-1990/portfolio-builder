@@ -2,7 +2,7 @@ import db from '@/lib/prisma'
 
 import React from 'react'
 import { redirect } from 'next/navigation'
-import BasicTheme from '@/components/themes/basic'
+import BasicTheme from '@/components/themes/(basic)/basic'
 
 type Props = {
     params:{previewId:string}
@@ -16,7 +16,11 @@ const PreviewPage =async ({params}: Props) => {
         },
         include:{
             experiences:true,
-            projects:true
+            projects:{
+                include:{
+                    images:true
+                }
+            }
         }
     })
 

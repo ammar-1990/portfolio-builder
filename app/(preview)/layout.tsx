@@ -19,7 +19,7 @@ const PreviewLayout = async ({ children }: Props) => {
              rounded-full w-12 h-12 cursor-pointer
               flex items-center justify-center text-white 
               hover:scale-105 transition
-               active:scale-[0.99] bg-black "
+               active:scale-[0.99] bg-black z-50"
           >
             <ForwardIcon className="w-6 h-6" />
           </Link>
