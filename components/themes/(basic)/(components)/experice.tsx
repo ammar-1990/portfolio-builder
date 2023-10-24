@@ -35,7 +35,7 @@ const ExperienceBasic = ({ experiences }: Props) => {
                 {experience.startDate?.toLocaleDateString()}
               </TimelineOppositeContent>
               <TimelineSeparator>
-                <TimelineDot />
+                <TimelineDot color="grey"  />
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent>

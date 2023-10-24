@@ -55,7 +55,7 @@ onClick={onClick}
 className=" w-[200px] aspect-square overflow-hidden relative text-gray-400 border-[2px] border-dashed rounded-xl flex flex-col items-center"
 >
     <Image src='/placeholder.jpg' fill alt='placehoder' className="object-contain" />
-    <p className="mt-auto">Add Image</p>
+    <p className="mt-auto">Add Logo</p>
    
 </div>
 }}

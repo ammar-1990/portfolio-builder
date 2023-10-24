@@ -34,8 +34,8 @@ model Portfolio {
 
   id            String @id @default(auto()) @map("_id") @db.ObjectId 
   name          String
-  title         String?
-  bio           String?
+  title         String
+  bio           String
   imageUrl      String?
   country       String?
   skills        String[] @default([])
@@ -43,7 +43,7 @@ model Portfolio {
   theme         String   @default("basic")
 
   email         String
-  tel           String?
+  tel           String
   linkedin      String?
   facebook      String?
   instagram     String?  

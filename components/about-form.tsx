@@ -44,13 +44,13 @@ const formSchema = z.object({
   name: z.string().min(1, {
     message: "Name is required.",
   }),
-  title: z.string().optional(),
-  bio: z.string().optional(),
-  tel:z.string().optional(),
-  email:z.string().email(),
-  instagram:z.string().optional(),
-  facebook:z.string().optional(),
-  linkedin:z.string().optional(),
+  title: z.string(),
+  bio: z.string(),
+  tel: z.string(),
+  email: z.string().email(),
+  instagram: z.string().optional(),
+  facebook: z.string().optional(),
+  linkedin: z.string().optional(),
 
   imageUrl: z.string().optional(),
   country: z.string().optional(),
@@ -127,8 +127,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
     if (!skillRef.current?.value) return;
     const myArray = form.getValues("skills");
     form.setValue("skills", [...myArray!, skillRef.current?.value]);
-    skillRef.current.value=''
-    ;
+    skillRef.current.value = "";
   }, [form]);
 
   useEffect(() => {
@@ -136,7 +135,6 @@ const AboutForm = ({ portfolio, names }: Props) => {
       if (e.key === "Enter") {
         e.preventDefault();
         handleButtonClick();
-     
       }
     };
 
@@ -144,7 +142,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
 
     return () => document.removeEventListener("keydown", handleEvent);
   }, [handleButtonClick]);
-const skillRef = useRef<HTMLInputElement | null>(null)
+  const skillRef = useRef<HTMLInputElement | null>(null);
   return (
     <div className="mt-10 flex-1  ">
       <Form {...form}>
@@ -153,7 +151,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
           className="space-y-4 flex flex-col h-full justify-between p-1"
         >
           <div className="">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
               <FormField
                 control={form.control}
                 name="name"
@@ -163,7 +161,9 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                     <FormControl>
                       <Input placeholder="Photography" {...field} />
                     </FormControl>
-
+                    <FormDescription className="text-xs ">
+                      Give your portfolio a name, example: Management...
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -173,11 +173,13 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>Title*</FormLabel>
                     <FormControl>
                       <Input placeholder="Expert photographer" {...field} />
                     </FormControl>
-
+                    <FormDescription className="text-xs">
+                      The title of your career, example: Project manager, Cook ....
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -228,12 +230,12 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                 )}
               />
 
-<FormField
+              <FormField
                 control={form.control}
                 name="tel"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Telephone number</FormLabel>
+                    <FormLabel>Telephone number*</FormLabel>
                     <FormControl>
                       <Input placeholder="telephone" {...field} />
                     </FormControl>
@@ -242,7 +244,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                   </FormItem>
                 )}
               />
-<FormField
+              <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
@@ -256,7 +258,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                   </FormItem>
                 )}
               />
-<FormField
+              <FormField
                 control={form.control}
                 name="facebook"
                 render={({ field }) => (
@@ -270,7 +272,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                   </FormItem>
                 )}
               />
-<FormField
+              <FormField
                 control={form.control}
                 name="linkedin"
                 render={({ field }) => (
@@ -284,7 +286,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                   </FormItem>
                 )}
               />
-<FormField
+              <FormField
                 control={form.control}
                 name="instagram"
                 render={({ field }) => (
@@ -304,7 +306,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                 name="bio"
                 render={({ field }) => (
                   <FormItem className="col-span-2 flex flex-col gap-1">
-                    <FormLabel>Bio</FormLabel>
+                    <FormLabel>Bio*</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Describe your career..."
@@ -312,7 +314,9 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                         {...field}
                       />
                     </FormControl>
-
+                    <FormDescription className="text-xs">
+                      Tell us about your self
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -340,20 +344,17 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                 name="skills"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Skills</FormLabel>
+                    <FormLabel>
+                      Skills {`${form.getValues("skills")?.length}/10`}
+                    </FormLabel>
                     <div className="flex items-center gap-x-2">
                       <FormControl>
-                        <Input
-                        ref={skillRef}
-                          placeholder="Programming.."
-                         
-                       
-                        />
+                        <Input ref={skillRef} placeholder="Programming.." />
                       </FormControl>
                       <Button
                         type="button"
                         onClick={handleButtonClick}
-                        disabled={ field.value?.length! >= 10}
+                        disabled={field.value?.length! >= 10}
                       >
                         Add
                       </Button>

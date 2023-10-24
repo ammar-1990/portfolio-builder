@@ -59,7 +59,7 @@ const ProjectsBasic = ({ projects }: Props) => {
                   {project?.description}
                 </p>
                 <span
-                  className="cursor-pointer flex items-center gap-x-2 text-white mt-20 w-fit mx-auto"
+                  className="cursor-pointer flex items-center gap-x-2 text-white mt-14 w-fit mx-auto"
                   onClick={() => onOpen("project-modal", { project: project })}
                 >
                   Preview <ZoomInIcon className="w-4 h-4" />
