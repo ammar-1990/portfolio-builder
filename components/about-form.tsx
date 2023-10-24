@@ -46,6 +46,12 @@ const formSchema = z.object({
   }),
   title: z.string().optional(),
   bio: z.string().optional(),
+  tel:z.string().optional(),
+  email:z.string().email(),
+  instagram:z.string().optional(),
+  facebook:z.string().optional(),
+  linkedin:z.string().optional(),
+
   imageUrl: z.string().optional(),
   country: z.string().optional(),
   skills: z
@@ -67,6 +73,11 @@ const AboutForm = ({ portfolio, names }: Props) => {
       name: portfolio?.name || "",
       title: portfolio?.title || "",
       bio: portfolio?.bio || "",
+      tel: portfolio?.tel || "",
+      email: portfolio?.email || "",
+      instagram: portfolio?.instagram || "",
+      facebook: portfolio?.facebook || "",
+      linkedin: portfolio?.linkedin || "",
       imageUrl: portfolio?.imageUrl || "",
       country: portfolio?.country || "",
       skills: portfolio?.skills || [],
@@ -211,6 +222,77 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                         </ScrollArea>
                       </SelectContent>
                     </Select>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+<FormField
+                control={form.control}
+                name="tel"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Telephone number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="telephone" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+<FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>E-mail</FormLabel>
+                    <FormControl>
+                      <Input placeholder="email" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+<FormField
+                control={form.control}
+                name="facebook"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Facebook</FormLabel>
+                    <FormControl>
+                      <Input placeholder="facebook" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+<FormField
+                control={form.control}
+                name="linkedin"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Linkedin</FormLabel>
+                    <FormControl>
+                      <Input placeholder="linkedin" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+<FormField
+                control={form.control}
+                name="instagram"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Instagram</FormLabel>
+                    <FormControl>
+                      <Input placeholder="instagram" {...field} />
+                    </FormControl>
 
                     <FormMessage />
                   </FormItem>

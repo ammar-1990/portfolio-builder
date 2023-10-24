@@ -42,6 +42,12 @@ model Portfolio {
 
   theme         String   @default("basic")
 
+  email         String
+  tel           String?
+  linkedin      String?
+  facebook      String?
+  instagram     String?  
+
   profileId     String @db.ObjectId
   profile       Profile @relation(fields: [profileId],references: [id],onDelete: Cascade)
 

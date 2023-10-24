@@ -37,11 +37,14 @@ const BasicTheme = ({ portfolio }: Props) => {
 
 <section className="" id="projects">
 <ProjectsBasic projects = {portfolio.projects} /> 
+<div className="h-[1000px]" ></div>
 <div className="" id='experience'></div>
-<ExperienceBasic />
-<div className="" id='contact'></div>
-<ContactBasic />
+<ExperienceBasic  experiences = {portfolio.experiences} />
 <div className="h-[500px]" id='contact'></div>
+<ContactBasic portfolio={portfolio} />
+
+
+
 
         </section>
 

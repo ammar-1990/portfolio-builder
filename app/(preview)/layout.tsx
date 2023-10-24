@@ -9,7 +9,7 @@ type Props = { children: React.ReactNode };
 const PreviewLayout = async ({ children }: Props) => {
   const currentProfile = await getCurrentProfile();
   return (
-    <div>
+    <div className="">
       {currentProfile  && (
         <TipTool preview={true} title="Dashboard" side="right">
           <Link

@@ -10,10 +10,11 @@ import { Edit, Trash, ZoomInIcon } from 'lucide-react'
 import { useModal } from '@/hooks/modal-hook'
 
 type Props = {
-    experience: Experience
+    experience: Experience,
+    preview?:boolean
 }
 
-const ExperienceComponent = ({experience}: Props) => {
+const ExperienceComponent = ({experience,preview}: Props) => {
 const router = useRouter()
 const params = useParams()
 
@@ -43,7 +44,7 @@ const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
 
 <p className='mt-4 text-neutral-500 text-xs line-clamp-3 mb-4'>{experience.description}</p>
 
-<div className="flex items-center gap-x-1   mt-auto z-20 ">
+{!preview && <div className="flex items-center gap-x-1   mt-auto z-20 ">
         <TipTool side="left" title="Edit">
           <Link
             href={`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience/${experience.id}`}
@@ -63,7 +64,7 @@ const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
             <Trash className="w-3 h-3 text-whte" />
           </Button>
         </TipTool>
-      </div>
+      </div>}
     </div>
   )
 }
