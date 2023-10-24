@@ -39,7 +39,7 @@ const {onOpen} = useModal()
 <Button className="absolute -top-1 -right-1 z-20 w-5 h-5 p-0 "
 variant={'destructive'}
 
-onClick={()=>onRemove(el)}
+onClick={(e)=>{onRemove(el);e.stopPropagation()}}
 type="button"
 >
     <Trash className="w-2 h-2" />
