@@ -247,7 +247,7 @@ const skillRef = useRef<HTMLInputElement | null>(null)
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>E-mail</FormLabel>
+                    <FormLabel>E-mail*</FormLabel>
                     <FormControl>
                       <Input placeholder="email" {...field} />
                     </FormControl>

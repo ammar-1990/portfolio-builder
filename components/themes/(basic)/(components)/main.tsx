@@ -48,7 +48,7 @@ const MainBasic = ({title,bio,skills}: Props) => {
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
     transition={{delay:0.3}}
     viewport={{once:true}}
-    className=" text-neutral-600 first-letter:capitalize text-center text-sm sm:text-base">{bio}</motion.p>
+    className=" text-neutral-600 first-letter:capitalize text-center   max-w-[600px] mt-5 text-sm  overflow-y-auto myScroll">{bio}</motion.p>
     
     <motion.div 
       variants={container}
@@ -56,7 +56,7 @@ const MainBasic = ({title,bio,skills}: Props) => {
       whileInView="show"
       viewport={{once:true}}
     
-    className="flex items-center  w-full   justify-center gap-4 sm:gap-8 mt-10 flex-wrap">
+    className="flex items-center  w-full max-w-[700px]  justify-center gap-x-4 sm:gap-x-8 gap-y-5 mt-10 flex-wrap">
        {skills.map((skill,i)=>
        <motion.div
        variants={item}
