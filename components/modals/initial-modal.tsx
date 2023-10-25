@@ -35,14 +35,16 @@ import { Loader } from "lucide-react"
 import { Textarea } from "../ui/textarea"
 
 
-
+const phoneRegex = new RegExp(
+  /^\+\d{1,3}\d{10}$/
+);
 
   const formSchema = z.object({
     name: z.string().min(1,{message:'Enter the name of your portfolio'}).trim(),
     title:z.string().min(1,{message:'Enter a valid title'}),
     bio:z.string().min(5,{message:'At least 5 characters'}),
     email:z.string().email(),
-    tel:z.string().min(6)
+    tel:z.string().regex(phoneRegex,'Enter valid phone number')
   })
   
   type Props = {}
@@ -151,9 +153,9 @@ const isOpen = open && modalType === 'initial-modal'
                 name="tel"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Telephone number*</FormLabel>
+                    <FormLabel>Mobile number*</FormLabel>
                     <FormControl>
-                      <Input placeholder="telephone" {...field} />
+                      <Input placeholder="+1xxxxxxxxxx" {...field} />
                     </FormControl>
 
                     <FormMessage className="text-xs" />

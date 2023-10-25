@@ -40,17 +40,36 @@ import { useEffect, useState } from "react";
 import { Loader, XIcon } from "lucide-react";
 import Image from "next/image";
 
+const phoneRegex = new RegExp(
+  /^\+\d{1,3}\d{10}$/
+);
+
+const facebookRegex = /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:[a-zA-Z0-9_\-\.]+)$/;
+const linkedinRegex = /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/(?:[a-zA-Z0-9_\-]+)$/;
+const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:[a-zA-Z0-9_\-\.]+)$/;
+
+const optionalString = z.string().refine(value => value === '' || value !== undefined, {
+  message: 'This field must be a valid URL or left empty',
+});
+
+
 const formSchema = z.object({
   name: z.string().min(1, {
     message: "Name is required.",
   }),
   title: z.string().min(1,{message:'Enter a valid title '}),
   bio: z.string().min(5,{message:'At least 5 characters'}),
-  tel: z.string().min(6),
+  tel:z.string().regex(phoneRegex,'Enter valid phone number'),
   email: z.string().email(),
-  instagram: z.string().optional(),
-  facebook: z.string().optional(),
-  linkedin: z.string().optional(),
+  facebook: optionalString.refine(value => value === '' || value === undefined || facebookRegex.test(value), {
+    message: 'Enter a valid Facebook account URL',
+  }),
+  linkedin: optionalString.refine(value => value === '' || value === undefined || linkedinRegex.test(value), {
+    message: 'Enter a valid LinkedIn account URL',
+  }),
+  instagram: optionalString.refine(value => value === '' || value === undefined || instagramRegex.test(value), {
+    message: 'Enter a valid Instagram account URL',
+  }),
 
   imageUrl: z.string().optional(),
   country: z.string().optional(),
@@ -230,17 +249,17 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 )}
               />
 
-              <FormField
+<FormField
                 control={form.control}
                 name="tel"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Telephone number*</FormLabel>
+                    <FormLabel>Mobile number*</FormLabel>
                     <FormControl>
-                      <Input placeholder="telephone" {...field} />
+                      <Input placeholder="+1xxxxxxxxxx" {...field} />
                     </FormControl>
 
-                    <FormMessage />
+                    <FormMessage className="text-xs" />
                   </FormItem>
                 )}
               />

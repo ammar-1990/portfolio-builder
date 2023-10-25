@@ -14,6 +14,7 @@ import "swiper/css/scrollbar";
 import { Image as PImage, Project } from "@prisma/client";
 import { useModal } from "@/hooks/modal-hook";
 import { ZoomInIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type ProjectWithImages = Project & { images: PImage[] };
 type Props = {
@@ -23,7 +24,7 @@ type Props = {
 const ProjectsBasic = ({ projects }: Props) => {
   const {onOpen} = useModal()
   return (
-    <section className="h-screen my-container sticky top-[66px]  ">
+    <section className={cn("h-screen my-container sticky top-[66px]  ",!projects.length && 'hidden')}>
       <Link
         href={"#projects"}
         className="text-4xl font-bold block text-center p-1 "
