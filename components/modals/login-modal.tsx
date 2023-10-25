@@ -43,7 +43,7 @@ const handleLogin =async ()=>{
        
       </DialogHeader>
       <LoginTab title="google" provider="google" img="/google-logo.png" />
-      <LoginTab title="linkedin" provider="linkedin" img="/linkedin-logo.png" />
+      <LoginTab title="github" provider="github" img="/github-logo.png" />
     </DialogContent>
   </Dialog>
   )

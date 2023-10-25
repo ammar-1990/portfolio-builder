@@ -19,7 +19,7 @@ const LoginComponent = (props: Props) => {
           <p className="text-xl font-semibold text-center">Login</p>
           <div className="mt-8 space-y-4">
           <LoginTab title="google" provider="google" img="/google-logo.png" />
-      <LoginTab title="linkedin" provider="linkedin" img="/linkedin-logo.png" />
+      <LoginTab title="github" provider="github" img="/github-logo.png" />
           </div>
         </div>
       </div>

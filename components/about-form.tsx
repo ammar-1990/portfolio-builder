@@ -44,8 +44,8 @@ const phoneRegex = new RegExp(
   /^\+\d{1,3}\d{10}$/
 );
 
-const facebookRegex = /^(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:[a-zA-Z0-9_\-\.]+)$/;
-const linkedinRegex = /^(?:https?:\/\/)?(?:www\.)?linkedin\.com\/(?:[a-zA-Z0-9_\-]+)$/;
+const facebookRegex = /^https?:\/\/(?:www\.)?facebook\.com\/[a-zA-Z0-9.-]+\/?$/;
+const linkedinRegex =/^https:\/\/www\.linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/
 const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:[a-zA-Z0-9_\-\.]+)$/;
 
 const optionalString = z.string().refine(value => value === '' || value !== undefined, {
@@ -404,7 +404,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                     </div>
                     {field.value?.length! >= 10 && (
                       <p className="py-1 text-sm text-rose-500">
-                        You can add 10 skills only
+                       You've reached the maximum of 10 skills!
                       </p>
                     )}
                     <FormMessage />

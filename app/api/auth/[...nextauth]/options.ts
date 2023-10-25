@@ -1,5 +1,5 @@
 import GoogleProvider from "next-auth/providers/google"
-import LinkedInProvider from "next-auth/providers/linkedin"
+import GitHubProvider from "next-auth/providers/github"
 import type { NextAuthOptions } from 'next-auth'
 export const authOptions:NextAuthOptions = {
   // Configure one or more authentication providers
@@ -10,13 +10,12 @@ export const authOptions:NextAuthOptions = {
         clientId: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!
     }),
-
-    LinkedInProvider({
-      clientId: process.env.LINKEDIN_CLIENT_ID!,
-      clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
-      authorization:{ params: { scope: "email" } }
-      
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID!,
+      clientSecret: process.env.GITHUB_SECRET!
     })
+
+   
     
     // ...add more providers here
   ],
