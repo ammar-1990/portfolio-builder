@@ -32,12 +32,12 @@ const BasicTheme = ({ portfolio }: Props) => {
       <div className="h-screen" id="home"/>
     
    <MainBasic title={portfolio.title} bio={portfolio.bio} skills={portfolio.skills} />
-<div className="h-[750px]" />
+<div className="h-[500px]" />
 
 
 <section className="" id="projects">
 <ProjectsBasic projects = {portfolio.projects} /> 
-<div className="h-[1000px]" ></div>
+<div className="h-[500px]" ></div>
 <div className="" id='experience'></div>
 <ExperienceBasic  experiences = {portfolio.experiences} />
 <div className="h-[500px]" id='contact'></div>

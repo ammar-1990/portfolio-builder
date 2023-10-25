@@ -39,8 +39,8 @@ import { Textarea } from "../ui/textarea"
 
   const formSchema = z.object({
     name: z.string().min(1,{message:'Enter the name of your portfolio'}).trim(),
-    title:z.string().min(1),
-    bio:z.string().min(4),
+    title:z.string().min(1,{message:'Enter a valid title'}),
+    bio:z.string().min(5,{message:'At least 5 characters'}),
     email:z.string().email(),
     tel:z.string().min(6)
   })
@@ -131,8 +131,8 @@ const isOpen = open && modalType === 'initial-modal'
                   </FormItem>
                 )}
               />
-    
-       <FormField
+    <div className="grid grid-cols-2 gap-2">
+    <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
@@ -160,6 +160,8 @@ const isOpen = open && modalType === 'initial-modal'
                   </FormItem>
                 )}
               />
+    </div>
+      
         <FormField
                 control={form.control}
                 name="bio"

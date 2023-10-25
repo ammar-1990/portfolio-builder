@@ -1,5 +1,5 @@
 import { Portfolio } from "@prisma/client";
-import { Facebook, Instagram, Linkedin, MessageSquareIcon, Phone } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MessageSquareIcon, Phone } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -19,10 +19,12 @@ const ContactBasic = ({ portfolio }: Props) => {
       </Link>
 
       <div className="mt-8 flex items-center flex-wrap justify-center gap-8 w-full">
+        <Link href={`mailto:${portfolio.email}`} >
         <div className="text-white text-xs flex items-center gap-x-2">
-          <MessageSquareIcon className="w-4 h-4 " />
+          <Mail className="w-4 h-4 " />
           <p className="text-white">{portfolio?.email}</p>
         </div>
+        </Link>
         {!!portfolio.tel && (
           <div className="text-white text-xs flex items-center gap-x-2">
             <Phone className="w-4 h-4 " />
@@ -30,34 +32,39 @@ const ContactBasic = ({ portfolio }: Props) => {
           </div>
         )}
         {!!portfolio.facebook && (
-          <div className="text-white text-xs flex items-center gap-x-2">
+         <Link href={portfolio.facebook} title={portfolio.facebook} target="_blank"><div className="text-white text-xs flex items-center gap-x-2">
             <span className="w-6 h-6 flex items-center justify-center rounded-lg bg-white">
               {" "}
               <Facebook className="w-4 h-4  stroke-transparent fill-blue-500" />{" "}
             </span>
 
-            <p className="text-white">{portfolio?.facebook}</p>
+           
           </div>
+          </Link> 
         )}
         {!!portfolio.linkedin && (
+          <Link href={portfolio?.linkedin} target="_blank" title={portfolio?.linkedin}>
           <div className="text-white text-xs flex items-center gap-x-2">
             <span className="w-6 h-6 flex items-center justify-center rounded-lg bg-white">
               {" "}
               <Linkedin className="w-4 h-4  stroke-none fill-blue-700" />{" "}
             </span>
 
-            <p className="text-white">{portfolio?.linkedin}</p>
+         
           </div>
+          </Link>
         )}
         {!!portfolio.instagram && (
+          <Link href={portfolio?.instagram} target="_blank" title={portfolio?.instagram}>
           <div className="text-white text-xs flex items-center gap-x-2">
             <span className="w-6 h-6 flex items-center justify-center rounded-lg bg-white">
               {" "}
               <Instagram className="w-4 h-4 stroke-black  " />{" "}
             </span>
 
-            <p className="text-white">{portfolio?.instagram}</p>
+          
           </div>
+          </Link>
         )}
       </div>
     </div>

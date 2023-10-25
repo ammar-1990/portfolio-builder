@@ -44,8 +44,8 @@ const formSchema = z.object({
   name: z.string().min(1, {
     message: "Name is required.",
   }),
-  title: z.string().min(1),
-  bio: z.string().min(5),
+  title: z.string().min(1,{message:'Enter a valid title '}),
+  bio: z.string().min(5,{message:'At least 5 characters'}),
   tel: z.string().min(6),
   email: z.string().email(),
   instagram: z.string().optional(),

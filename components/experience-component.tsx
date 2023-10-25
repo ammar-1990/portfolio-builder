@@ -30,7 +30,7 @@ const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
 
   return (
     <div
-    className=' border rounded-2xl overflow-hidden h-full col-span-1  transition flex flex-col relative group active:scale-[0.99] p-4'
+    className=' border rounded-2xl overflow-hidden h-full col-span-1  transition flex flex-col relative group active:scale-[0.99] p-4 bg-white'
     >
           <div className="absolute inset-0 bg-black/70 text-white flex items-center justify-center transition duration-200 opacity-0 group-hover:opacity-100 z-10 ">
         <span className="cursor-pointer flex items-center gap-x-2" onClick={()=>onOpen('experience-modal',{experience:experience})}>Preview <ZoomInIcon className="w-4 h-4" /></span>

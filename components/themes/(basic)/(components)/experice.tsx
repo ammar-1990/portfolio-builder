@@ -18,7 +18,7 @@ type Props = {
 
 const ExperienceBasic = ({ experiences }: Props) => {
   return (
-    <div className="h-screen my-container sticky flex flex-col top-[120px] z-10 bg-white  border rounded-3xl">
+    <div className="h-screen my-container sticky flex flex-col top-[120px] z-10 bg-gray-300/50 backdrop-blur-lg   border rounded-3xl">
       <Link
         href={"#experience"}
         className="text-4xl font-bold block text-center p-1 py-8 "

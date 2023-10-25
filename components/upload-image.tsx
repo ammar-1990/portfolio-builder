@@ -29,7 +29,7 @@ const ImageUpload = ({ disabled, onChange, onRemove, value }: Props) => {
 
   return <div className="self-center">
     <div className="flex items-center   justify-center">
-        {value ? <div className="relative w-[200px] aspect-square overflow-hidden ">
+        {value ? <div className="relative w-[200px] aspect-square overflow-hidden flex ">
 
             <Button className="absolute top-1 right-1 z-20"
             variant={'destructive'}
@@ -44,6 +44,7 @@ const ImageUpload = ({ disabled, onChange, onRemove, value }: Props) => {
             fill
             className="object-contain rounded-md"
             />
+            <p className="text-center mt-auto w-full font-bold">Logo</p>
         </div> :  <CldUploadWidget uploadPreset="tbjpi9qc" onUpload={onUpload}>
 {({open})=>{
 const onClick = ()=>{open()}

@@ -46,7 +46,7 @@ const ProjectsBasic = ({ projects }: Props) => {
           <SwiperSlide key={project.id} className=" pb-28">
             <div
               className={`w-full sm:w-[450px] md:w-[700px] mx-auto group aspect-video rounded-lg
-               overflow-hidden relative md:grayscale-[5] hover:grayscale-0 transition duration-300 border
+               overflow-hidden relative   transition duration-300 border
                 cursor-pointer  `}
             >
               <div
