@@ -128,12 +128,12 @@ const ExperienceForm = ({ experience }: Props) => {
           className="space-y-4 flex flex-col h-full justify-between p-1"
         >
           <div className="">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-3">
               <FormField
                 control={form.control}
                 name="place"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="sm:col-span-2">
                     <FormLabel>Place*</FormLabel>
                     <FormControl>
                       <Input placeholder="any company" {...field} />
@@ -147,7 +147,7 @@ const ExperienceForm = ({ experience }: Props) => {
                 control={form.control}
                 name="description"
                 render={({ field }) => (
-                  <FormItem className="col-span-2">
+                  <FormItem className="sm:col-span-2">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
                     <Textarea
@@ -166,7 +166,7 @@ const ExperienceForm = ({ experience }: Props) => {
           control={form.control}
           name="startDate"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem className="flex flex-col sm:col-span-2">
               <FormLabel>Start date</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
@@ -174,7 +174,7 @@ const ExperienceForm = ({ experience }: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
+                        " pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -190,12 +190,14 @@ const ExperienceForm = ({ experience }: Props) => {
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
                     mode="single"
+
                     selected={field.value}
                     onSelect={field.onChange}
                     disabled={(date) =>
                       date > new Date() || date < new Date("1900-01-01")
                     }
                     initialFocus
+                 
                   />
                 </PopoverContent>
               </Popover>
@@ -210,7 +212,7 @@ const ExperienceForm = ({ experience }: Props) => {
           control={form.control}
           name="endDate"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem className="flex flex-col sm:col-span-2">
               <FormLabel>End date</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
@@ -218,7 +220,7 @@ const ExperienceForm = ({ experience }: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
+                         "pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
                     >

@@ -169,13 +169,14 @@ const AboutForm = ({ portfolio, names }: Props) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-4 flex flex-col h-full justify-between p-1"
         >
-          <div className="">
+       
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
               <FormField
+              
                 control={form.control}
                 name="name"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Portfolio name*</FormLabel>
                     <FormControl>
                       <Input placeholder="Photography" {...field} />
@@ -191,7 +192,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="title"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Title*</FormLabel>
                     <FormControl>
                       <Input placeholder="Expert photographer" {...field} />
@@ -207,7 +208,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="country"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Country</FormLabel>
                     <Select
                       onValueChange={field.onChange}
@@ -253,7 +254,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="tel"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Mobile number*</FormLabel>
                     <FormControl>
                       <Input placeholder="+1xxxxxxxxxx" {...field} />
@@ -267,7 +268,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>E-mail*</FormLabel>
                     <FormControl>
                       <Input placeholder="email" {...field} />
@@ -281,7 +282,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="facebook"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Facebook</FormLabel>
                     <FormControl>
                       <Input placeholder="facebook" {...field} />
@@ -295,7 +296,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="linkedin"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Linkedin</FormLabel>
                     <FormControl>
                       <Input placeholder="linkedin" {...field} />
@@ -309,7 +310,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="instagram"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Instagram</FormLabel>
                     <FormControl>
                       <Input placeholder="instagram" {...field} />
@@ -324,7 +325,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="bio"
                 render={({ field }) => (
-                  <FormItem className="col-span-2 flex flex-col gap-1">
+                  <FormItem className="sm:col-span-2 flex flex-col gap-1 flex-shrink-0 col-span-1">
                     <FormLabel>Bio*</FormLabel>
                     <FormControl>
                       <Textarea
@@ -353,7 +354,9 @@ const AboutForm = ({ portfolio, names }: Props) => {
                         value={field.value || ""}
                       />
                     </FormControl>
-
+                    <FormDescription className="text-xs">
+                      The logo will appear in your site,otherwise the title will appear
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -362,7 +365,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="skills"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="sm:col-span-2 col-span-1 flex-shrink-0">
                     <FormLabel>
                       Skills {`${form.getValues("skills")?.length}/10`}
                     </FormLabel>
@@ -409,7 +412,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 )}
               />
             </div>
-          </div>
+          
           <div className="flex items-center gap-x-4">
             {" "}
             <Button disabled={isLoading} type="submit">

@@ -22,7 +22,7 @@ where:{
     <div className=' h-full flex flex-col'>
       <MainNav />
       <div className='flex flex-1 '>
-        <div className='w-[350px] p-4 items-center flex '>
+        <div className='w-[350px] p-4 items-center lg:flex hidden'>
         <SideBar portfolios = {portfolios} />
         </div>
        

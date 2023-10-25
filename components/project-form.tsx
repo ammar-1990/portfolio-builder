@@ -151,7 +151,7 @@ const ProjectForm = ({ project }: Props) => {
               control={form.control}
               name="images"
               render={({ field }) => (
-                <FormItem className="col-span-2 flex flex-col gap-1">
+                <FormItem className="sm:col-span-2 flex flex-col gap-1">
                   <FormLabel>Images</FormLabel>
                   <FormControl>
                   <ImageManyUpload
@@ -170,7 +170,7 @@ const ProjectForm = ({ project }: Props) => {
               control={form.control}
               name="description"
               render={({ field }) => (
-                <FormItem className="col-span-3">
+                <FormItem className="md:col-span-3 sm:col-span-2 col-span-1">
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                   <Textarea
