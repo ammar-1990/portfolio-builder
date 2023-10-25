@@ -29,10 +29,10 @@ const ExperienceBasic = ({ experiences }: Props) => {
       </Link>
 
       <div className="mt-10 max-h-[600px] overflow-y-auto myScroll pb-10">
-        <Timeline position="alternate">
+        <Timeline   position="alternate">
           {experiences.map((experience) => (
-            <TimelineItem key={experience.id}>
-              <TimelineOppositeContent color="text.secondary">
+            <TimelineItem   key={experience.id}>
+              <TimelineOppositeContent  color="text.secondary">
                 {experience.startDate?.toLocaleDateString()}
               </TimelineOppositeContent>
               <TimelineSeparator>

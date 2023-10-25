@@ -28,7 +28,7 @@ const router = useRouter()
 <div className="w-6 h-6 relative">
 <Image src={img} fill alt="google-logo" className="object-contain" />
 </div>
-<p className="capitalize">{title}</p>
+<p className="capitalize">Continue with {title}</p>
     </Button>
 
   </div>

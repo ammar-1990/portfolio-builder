@@ -7,6 +7,9 @@ import Image from "next/image";
 import { CldUploadWidget } from 'next-cloudinary';
 import { Skeleton } from "@/components/ui/skeleton"
 import { useModal } from "@/hooks/modal-hook";
+import { deleteImage } from "@/app/cloudinary";
+
+
 
 type Props = {
   disabled: boolean;

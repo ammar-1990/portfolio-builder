@@ -12,7 +12,7 @@ const ContactBasic = ({ portfolio }: Props) => {
     <div className="h-[200px]  mt-52 relative my-container  z-10 bg-black/90 rounded-t-3xl ">
       <Link
         href={"#contact"}
-        className="text-4xl font-bold block text-center p-1 pt-5 text-white"
+        className="md:text-4xl font-bold block text-center p-1 pt-5 text-white text-xl"
       >
         {" "}
         Contact

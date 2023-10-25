@@ -19,6 +19,7 @@ const ProjectComponent = ({ project }: Props) => {
   const { onOpen } = useModal();
 
   const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
+  
     e.preventDefault();
     onOpen("alert-modal", {
       url: `/api/${params.profileId}/${params.portfolioId}/project/${project.id}`,
@@ -68,6 +69,7 @@ const ProjectComponent = ({ project }: Props) => {
       <div className="flex items-center gap-x-1 my-3 px-4 z-20 ">
         <TipTool side="left" title="Edit">
           <Link
+       
             href={`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/projects/${project.id}`}
           >
             <Button size={"icon"} variant={"default"} className={"p-0 w-7 h-7"}>

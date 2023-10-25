@@ -13,7 +13,7 @@ type Props = {
 const HeaderBasic = ({image,projects,experience,title}: Props) => {
   return (
     <header className=" h-16 fixed top-0 w-full bg-black z-50">
-        <div className="my-container flex items-center justify-between w-full h-full">
+        <div className="my-container flex items-center justify-center  sm:justify-between w-full h-full flex-col sm:flex-row ">
           {!!image ? (
             <Link
             scroll
@@ -31,16 +31,16 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             <Link 
             scroll
             href={"#home"}>
-              <span className="font-bold text-white text-lg  md:text-xl">
+              <span className="font-bold text-white text-md  md:text-xl">
                 {title}
               </span>
             </Link>
           )}
 
-          <nav className="flex items-center sm:gap-x-8 gap-x-4  md:gap-x-20 text-xs md:text-base text-white">
+          <nav className="flex items-center sm:gap-x-8 gap-x-2   md:gap-x-20 text-xs md:text-base text-white">
             <Link
             scroll
-              className=" font-semibold transition p-1"
+              className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
               href={"#home"}
             >
               Home
@@ -48,7 +48,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             {projects && (
               <Link
               scroll
-                className=" font-semibold transition p-1"
+                className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
                 href={"#projects"}
               >
                 Projects
@@ -57,7 +57,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             {experience && (
               <Link 
               scroll
-                className=" font-semibold transition p-1"
+                className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
                 href={"#experience"}
               >
                 Experience
@@ -65,7 +65,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             )}
                 <Link 
               scroll
-                className=" font-semibold transition p-1"
+                className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
                 href={"#contact"}
               >
                 Contact
