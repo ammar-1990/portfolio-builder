@@ -16,6 +16,7 @@ import {
   import Image from 'next/image'
 import { useModal } from "@/hooks/modal-hook"
 import { Button } from "../ui/button"
+import LoginTab from "../login-tab"
 
 type Props = {}
 
@@ -41,15 +42,8 @@ const handleLogin =async ()=>{
         <DialogTitle className="text-center mt-5">Login</DialogTitle>
        
       </DialogHeader>
-      <div className="space-y-4 flex flex-col items-center w-full">
-        <Button variant={'ghost'} className="w-full flex items-center gap-x-3 border " onClick={handleLogin}>
- <div className="w-6 h-6 relative">
-    <Image src={'/google-logo.png'} fill alt="google-logo" className="object-contain" />
-</div>
-<p>Google</p>
-        </Button>
-
-      </div>
+      <LoginTab title="google" provider="google" img="/google-logo.png" />
+      <LoginTab title="linkedin" provider="linkedin" img="/linkedin-logo.png" />
     </DialogContent>
   </Dialog>
   )
