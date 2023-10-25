@@ -6,6 +6,7 @@ import AvatarComponent from './avatar-component';
 import LoginButton from './login-button';
 import { getCurrentProfile } from '@/lib/getCurrentProfile';
 import MainnavLinks from './mainnav-links';
+import MainnavLinkMobile from './main-nav-link-mobile';
 
 type Props = {}
 
@@ -23,6 +24,7 @@ const MainNav =async (props: Props) => {
       </Link>
 
     <MainnavLinks />
+    <MainnavLinkMobile />
      
       {currentProfile ? (
       

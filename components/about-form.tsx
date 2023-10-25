@@ -404,7 +404,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                     </div>
                     {field.value?.length! >= 10 && (
                       <p className="py-1 text-sm text-rose-500">
-                       You've reached the maximum of 10 skills!
+                       You &apos;ve reached the maximum of 10 skills!
                       </p>
                     )}
                     <FormMessage />

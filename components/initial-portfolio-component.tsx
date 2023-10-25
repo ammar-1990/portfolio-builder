@@ -12,7 +12,7 @@ const InitialPortfolioComponent = (props: Props) => {
     const {open, onOpen}=useModal()
     useEffect(()=>{
 onOpen('initial-modal')
-    },[open])
+    },[open,onOpen])
   return (
     null
   )
