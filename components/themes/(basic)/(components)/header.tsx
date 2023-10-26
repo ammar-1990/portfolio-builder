@@ -18,7 +18,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             <Link
             scroll
             href={"#home"}>
-              <div className="w-12 h-12 relative bg-white rounded-full overflow-hidden ">
+              <div className="w-12 h-12 relative  rounded-full overflow-hidden ">
                 <Image
                   fill
                   src={image as string}

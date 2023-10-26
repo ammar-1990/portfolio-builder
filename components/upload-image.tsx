@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { ImagePlus,Trash } from "lucide-react";
+import { ImagePlus,Loader,Trash } from "lucide-react";
 import Image from "next/image";
 import { CldUploadWidget } from 'next-cloudinary';
 import { Skeleton } from "@/components/ui/skeleton"
+import { useDeleteImage } from "@/hooks/useDeleteImage";
 
 type Props = {
   disabled: boolean;
@@ -25,25 +26,38 @@ const ImageUpload = ({ disabled, onChange, onRemove, value }: Props) => {
     onChange(result.info.secure_url);
   };
 
+  const { loading, deleteImage } = useDeleteImage();
+
+  const toDelete = async (url: string) => {
+    try {
+      await deleteImage(url);
+      onRemove();
+  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   if (!mounted) return <div className="self-center flex items-center justify-center"><Skeleton className="w-[200px] aspect-square rounded-xl" /></div>
 
   return <div className="self-center">
     <div className="flex items-center   justify-center">
-        {value ? <div className="relative w-[200px] aspect-square overflow-hidden flex ">
+        {value ? <div className="relative w-[200px] aspect-square overflow-hidden flex items-center justify-center">
 
-            <Button className="absolute top-1 right-1 z-20"
+            <Button type="button" className="absolute top-1 right-1 z-20"
             variant={'destructive'}
             size={'icon'}
-            onClick={()=>onRemove()}
+            onClick={async()=>await toDelete(value)}
             >
-                <Trash className="w-4 h-4" />
+                <Trash className="w-4 h-4 " />
             </Button>
-            <Image 
+            {loading === value ? <Loader className="w-4 h-4 animate-spin absolute" /> : <Image 
             alt="uploaded-image"
             src={value}
             fill
             className="object-contain rounded-md"
-            />
+            />}
             <p className="text-center mt-auto w-full font-bold">Logo</p>
         </div> :  <CldUploadWidget uploadPreset="tbjpi9qc" onUpload={onUpload}>
 {({open})=>{
