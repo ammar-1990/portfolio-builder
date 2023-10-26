@@ -84,11 +84,16 @@ body,
 
 
 .myScroll::-webkit-scrollbar {
-  @apply w-2 z-50
+  @apply w-2 
 }
 
 .myScroll::-webkit-scrollbar-thumb {
   @apply bg-neutral-300 rounded-full
+}
+
+
+.noScroll::-webkit-scrollbar {
+  @apply hidden
 }
 
 .my-container {

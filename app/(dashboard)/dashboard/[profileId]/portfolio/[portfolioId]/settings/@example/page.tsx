@@ -6,14 +6,14 @@ import BasicTheme from '@/components/themes/(basic)/basic'
 import MoveTheme from '@/components/themes/(move)/move'
 
 type Props = {
-    params:{previewId:string}
+    params:{portfolioId:string}
 }
 
-const PreviewPage =async ({params}: Props) => {
+const ExamplePage =async ({params}: Props) => {
 
     const portfolio = await db.portfolio.findUnique({
         where:{
-            id:params.previewId
+            id:params.portfolioId
         },
         include:{
             experiences:true,
@@ -25,10 +25,10 @@ const PreviewPage =async ({params}: Props) => {
         }
     })
 
-    if(!portfolio) return redirect('/dashboard')
+    if(!portfolio) return <div>error</div>
 
     const preview : { [key: string]: JSX.Element } = {
-        basic:<BasicTheme portfolio={portfolio} />,
+        basic:<BasicTheme preview={true} portfolio={portfolio} />,
         move:<MoveTheme />
     }
  
@@ -37,4 +37,4 @@ const PreviewPage =async ({params}: Props) => {
   )
 }
 
-export default PreviewPage
+export default ExamplePage

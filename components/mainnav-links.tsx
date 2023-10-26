@@ -33,6 +33,13 @@ const MainnavLinks = (props: Props) => {
         pathname ===
         `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
     },
+    {
+      label: "settings",
+      url: `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/settings`,
+      active:
+        pathname ===
+        `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/settings`,
+    },
  
    
   ];

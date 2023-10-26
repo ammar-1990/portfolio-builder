@@ -2,15 +2,17 @@
 import {motion} from 'framer-motion'
 
 import { useScroll } from '@/hooks/useScroll'
+import { cn } from '@/lib/utils'
 
 type Props = {
 
     title:string | null,
     bio:string | null ,
-    skills:string[]
+    skills:string[],
+    preview?:boolean
 }
 
-const MainBasic = ({title,bio,skills}: Props) => {
+const MainBasic = ({title,bio,skills,preview}: Props) => {
 
 
     const container = {
@@ -37,7 +39,7 @@ const MainBasic = ({title,bio,skills}: Props) => {
     
 
   return (
-    <motion.section style={{opacity:scrollY}} className="flex items-center justify-center h-screen flex-col  fixed top-0 w-screen left-0">
+    <motion.section style={{opacity:scrollY}} className={cn("flex items-center justify-center h-screen flex-col  fixed top-0 w-screen left-0",preview && 'absolute w-full')}>
     <motion.h2
     initial={{x:-50,opacity:0,filter: "blur(20px)"}}
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
@@ -48,7 +50,7 @@ const MainBasic = ({title,bio,skills}: Props) => {
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
     transition={{delay:0.3}}
     viewport={{once:true}}
-    className=" text-neutral-600 first-letter:capitalize text-center   max-w-[600px] mt-5 text-sm  overflow-y-auto myScroll">{bio}</motion.p>
+    className={cn(" text-neutral-600 first-letter:capitalize text-center   max-w-[600px] mt-5 text-sm  overflow-y-auto myScroll", preview && 'text-xs')}>{bio}</motion.p>
     
     <motion.div 
       variants={container}

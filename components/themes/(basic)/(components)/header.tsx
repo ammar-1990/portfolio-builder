@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -7,12 +8,13 @@ type Props = {
     image:string | null,
     experience:boolean,
     projects:boolean,
-    title:string | null
+    title:string | null,
+    preview?:boolean
 }
 
-const HeaderBasic = ({image,projects,experience,title}: Props) => {
+const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
   return (
-    <header className=" sm:h-16 h-24 fixed top-0 w-full bg-black z-50 ">
+    <header className={cn(" sm:h-16 h-24 fixed top-0 w-full bg-black z-50 ",preview && 'sticky')}>
         <div className="my-container flex items-center justify-center gap-y-2  sm:justify-between w-full h-full flex-col sm:flex-row ">
           {!!image ? (
             <Link
@@ -37,10 +39,10 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             </Link>
           )}
 
-          <nav className="flex items-center sm:gap-x-8 gap-x-2   md:gap-x-20 text-xs md:text-base text-white">
+          <nav className={cn("flex items-center sm:gap-x-8 gap-x-2   md:gap-x-20 text-xs md:text-base text-white",preview && 'md:gap-x-2 lg:gap-x-2')}>
             <Link
             scroll
-              className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
+              className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
               href={"#home"}
             >
               Home
@@ -48,7 +50,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             {projects && (
               <Link
               scroll
-                className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
+                className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
                 href={"#projects"}
               >
                 Projects
@@ -57,7 +59,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             {experience && (
               <Link 
               scroll
-                className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
+                className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
                 href={"#experience"}
               >
                 Experience
@@ -65,7 +67,7 @@ const HeaderBasic = ({image,projects,experience,title}: Props) => {
             )}
                 <Link 
               scroll
-                className=" font-semibold transition p-1 text-xs sm:text-md md:text-base"
+                className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
                 href={"#contact"}
               >
                 Contact

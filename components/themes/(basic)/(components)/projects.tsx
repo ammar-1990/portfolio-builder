@@ -19,9 +19,10 @@ import { cn } from "@/lib/utils";
 type ProjectWithImages = Project & { images: PImage[] };
 type Props = {
   projects: ProjectWithImages[];
+  preview?:boolean
 };
 
-const ProjectsBasic = ({ projects }: Props) => {
+const ProjectsBasic = ({ projects,preview }: Props) => {
   const {onOpen} = useModal()
   return (
     <section className={cn("h-screen my-container sticky top-[95px] sm:top-[66px]  ",!projects.length && 'hidden')}>
@@ -46,9 +47,9 @@ const ProjectsBasic = ({ projects }: Props) => {
         {projects.map((project) => (
           <SwiperSlide key={project.id} className=" pb-28">
             <div
-              className={`w-full sm:w-[450px] md:w-[700px] mx-auto group aspect-video rounded-lg
+              className={cn(`w-full sm:w-[450px] md:w-[700px] mx-auto group aspect-video rounded-lg
                overflow-hidden relative   transition duration-300 border
-                cursor-pointer  `}
+                cursor-pointer  `,preview && 'w-[400px] md:w-[400px] sm:w-[400px]')}
             >
               <div
                 className="absolute top-0  aspect-video w-full md:w-[300px] 
