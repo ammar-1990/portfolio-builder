@@ -24,7 +24,7 @@ type Props = {
 const ProjectsBasic = ({ projects }: Props) => {
   const {onOpen} = useModal()
   return (
-    <section className={cn("h-screen my-container sticky top-[66px]  ",!projects.length && 'hidden')}>
+    <section className={cn("h-screen my-container sticky top-[95px] sm:top-[66px]  ",!projects.length && 'hidden')}>
       <Link
         href={"#projects"}
         className="text-4xl font-bold block text-center p-1 "

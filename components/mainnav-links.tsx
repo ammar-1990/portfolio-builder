@@ -42,8 +42,8 @@ const MainnavLinks = (props: Props) => {
       {links.map((link) => (
         <Link
           className={cn(
-            "text-zinc-600 capitalize transition hover:text-black",
-            link.active && "text-black font-semibold border-b border-black h-full flex items-center justify-center  "
+            "text-zinc-600 capitalize transition hover:text-black  ",
+            link.active && "text-black font-bold border-b border-black h-full flex items-center justify-center  "
           )}
           key={link.label}
           href={link.url}
