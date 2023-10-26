@@ -45,12 +45,12 @@ const MainnavLinkMobile = (props: Props) => {
   ];
 
   return (
-    <div className=" items-center  flex justify-between px-6 sm:hidden py-2 border-b">
+    <div className=" items-center  flex justify-between px-6 sm:hidden h-12 border-b ">
       {links.map((link) => (
         <Link
           className={cn(
-            "text-zinc-600 capitalize transition hover:text-black",
-            link.active && "text-black font-semibold"
+            "text-zinc-600 capitalize transition text-xs hover:text-black",
+            link.active && "text-black font-semibold border-b border-black h-full flex items-center justify-center "
           )}
           key={link.label}
           href={link.url}
@@ -58,7 +58,7 @@ const MainnavLinkMobile = (props: Props) => {
           {link.label}
         </Link>
       ))}
-        <Link href={`/preview/${params.portfolioId}`} className=""><Button variant={'default'} size={'sm'}>Preivew</Button></Link>
+        <Link href={`/preview/${params.portfolioId}`} className=""><Button variant={'default'} size={'sm'} className="text-xs" >Preivew</Button></Link>
     </div>
   );
 };
