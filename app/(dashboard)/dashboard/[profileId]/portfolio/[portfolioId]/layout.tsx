@@ -26,7 +26,7 @@ where:{
         <SideBar portfolios = {portfolios} />
         </div>
        
-       <main className='flex-1 h-[650px] p-8 overflow-y-auto   myScroll '>
+       <main className='flex-1 h-[650px] p-2 md:p-8 overflow-y-auto   myScroll '>
      
         {children}
        

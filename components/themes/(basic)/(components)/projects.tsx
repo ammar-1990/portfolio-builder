@@ -52,7 +52,7 @@ const ProjectsBasic = ({ projects,preview }: Props) => {
             <div
               className={cn(`w-full sm:w-[450px] md:w-[700px] mx-auto group aspect-video rounded-lg
                overflow-hidden relative   transition duration-300 border
-                cursor-pointer  `,preview && 'w-[400px] md:w-[400px] sm:w-[400px]')}
+                cursor-pointer  `,preview && 'w-full sm:w-[300px] md:w-[400px]')}
             >
               <div
                 className="absolute top-0  aspect-video w-full md:w-[300px] 
