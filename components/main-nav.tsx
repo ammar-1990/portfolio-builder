@@ -16,6 +16,7 @@ const MainNav =async (props: Props) => {
 
 
   return (
+    <>
     <div className="flex items-center h-20 justify-between px-6 sm:px-12 md:px-20 lg:px-28 flex-shrink-0 bg-gradient-to-r border-b">
       <Link href={'/'}>
       <div className="relative w-12 h-12">
@@ -24,7 +25,7 @@ const MainNav =async (props: Props) => {
       </Link>
 
     <MainnavLinks />
-    <MainnavLinkMobile />
+  
      
       {currentProfile ? (
       
@@ -36,6 +37,8 @@ const MainNav =async (props: Props) => {
   <LoginButton />
       )}
     </div>
+    <MainnavLinkMobile />
+    </>
   );
 };
 

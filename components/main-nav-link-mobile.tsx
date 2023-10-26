@@ -7,8 +7,10 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 type Props = {};
 
@@ -38,42 +40,26 @@ const MainnavLinkMobile = (props: Props) => {
         pathname ===
         `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
     },
-    {
-      label: "preview",
-      url: `/preview/${params.portfolioId}`,
-      active: pathname === `/preview/${params.portfolioId}`,
-    },
+   
+   
   ];
 
-  const router = useRouter();
-const [toOpen, setToOpen] = useState(false)
-
-const theActive = links.find((el)=>el.active === true)
-
   return (
-    
-
-
-    <Popover open={toOpen} onOpenChange={setToOpen}>
-  <PopoverTrigger className="sm:hidden font-semibold capitalize flex items-center ">{theActive?.label}<ChevronDown className="ml-1 w-4 h-4 text-black" /></PopoverTrigger>
-  <PopoverContent className="flex flex-col items-center p-1">
-  {links.map((link) => (
-          <span
-            onClick={() => {router.push(link.url);setToOpen(false)}}
-            key={link.label}
-            className={cn(
-              "text-zinc-600 capitalize transition p-3 hover:text-black rounded-full w-full text-center cursor-pointer hover:bg-neutral-50",
-              link.active && "text-black font-semibold bg-neutral-100"
-            )}
-          >
-            {link.label}
-          </span>
-        ))}
-        </PopoverContent>
-</Popover>
-
-  
-
+    <div className=" items-center  flex justify-between px-6 sm:hidden py-2 border-b">
+      {links.map((link) => (
+        <Link
+          className={cn(
+            "text-zinc-600 capitalize transition hover:text-black",
+            link.active && "text-black font-semibold"
+          )}
+          key={link.label}
+          href={link.url}
+        >
+          {link.label}
+        </Link>
+      ))}
+        <Link href={`/preview/${params.portfolioId}`} className=""><Button variant={'default'} size={'sm'}>Preivew</Button></Link>
+    </div>
   );
 };
 

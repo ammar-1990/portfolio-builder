@@ -12,8 +12,8 @@ type Props = {
 
 const HeaderBasic = ({image,projects,experience,title}: Props) => {
   return (
-    <header className=" h-16 fixed top-0 w-full bg-black z-50">
-        <div className="my-container flex items-center justify-center  sm:justify-between w-full h-full flex-col sm:flex-row ">
+    <header className=" sm:h-16 h-24 fixed top-0 w-full bg-black z-50 ">
+        <div className="my-container flex items-center justify-center gap-y-2  sm:justify-between w-full h-full flex-col sm:flex-row ">
           {!!image ? (
             <Link
             scroll

@@ -3,6 +3,7 @@
 import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 type Props = {};
 
@@ -32,13 +33,7 @@ const MainnavLinks = (props: Props) => {
         pathname ===
         `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
     },
-    {
-      label: "preview",
-      url: `/preview/${params.portfolioId}`,
-      active:
-        pathname ===
-        `/preview/${params.portfolioId}`,
-    },
+ 
    
   ];
 
@@ -56,6 +51,7 @@ const MainnavLinks = (props: Props) => {
           {link.label}
         </Link>
       ))}
+            <Link href={`/preview/${params.portfolioId}`} className=""><Button variant={'default'} size={'sm'}>Preivew</Button></Link>
     </div>
   );
 };
