@@ -1,6 +1,4 @@
-'use client'
-
-
+"use client";
 
 import { Portfolio } from "@prisma/client";
 
@@ -32,30 +30,19 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 
-
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/modal-hook";
 import { Loader } from "lucide-react";
 
-
-
-
-
-
-
 const formSchema = z.object({
   theme: z.string().min(1, {
     message: "Theme is required.",
   }),
-
-
 });
 
 type Props = {
   portfolio: Portfolio | null;
-
-
 };
 
 const SettingsForm = ({ portfolio }: Props) => {
@@ -63,14 +50,12 @@ const SettingsForm = ({ portfolio }: Props) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       theme: portfolio?.theme || "basic",
-   
     },
   });
   const isLoading = form.formState.isSubmitting;
 
   const params = useParams();
   const router = useRouter();
-
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
@@ -106,81 +91,70 @@ const SettingsForm = ({ portfolio }: Props) => {
 
   const { onOpen } = useModal();
 
- 
   return (
     <div className="mt-10 flex-1 h-full ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 flex flex-col h-full  p-1 justify-between"
+          className="space-y-4 flex flex-col h-full   justify-between border-b p-4"
         >
-       
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
-           
-          
-              <FormField
-                control={form.control}
-                name="theme"
-                render={({ field }) => (
-                  <FormItem className="col-span-1 flex-shrink-0 min-w-[200px]">
-                    <FormLabel>Theme</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue
-                            className="text-zinc-200"
-                            placeholder="Select your country"
-                          />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <ScrollArea className="h-[200px] ">
-                        
-                            <SelectItem
-                              className="cursor-pointer "
-                              key={'basic'}
-                              value={'basic'}
-                            >
-                            
+          <div className="">
+            <FormField
+              control={form.control}
+              name="theme"
+              render={({ field }) => (
+                <FormItem className=" flex-shrink-0 w-fit">
+                  <FormLabel>Choose your theme</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="capitalize">
+                        <SelectValue
+                          className="text-zinc-200 capitalize"
+                          placeholder="Select your country"
+                        />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <ScrollArea className="h-[200px] ">
+                        <SelectItem
+                          className="cursor-pointer capitalize"
+                          key={"basic"}
+                          value={"basic"}
+                        >
+                          basic
+                        </SelectItem>
+                        <SelectItem
+                          className="cursor-pointer capitalize"
+                          key={"move"}
+                          value={"move"}
+                        >
+                          move
+                        </SelectItem>
+                      </ScrollArea>
+                    </SelectContent>
+                  </Select>
+                  <FormDescription className="text-xs">
+                    Choose the theme you want for your site
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-                         basic
-                        
-                            </SelectItem>
-                            <SelectItem
-                              className="cursor-pointer "
-                              key={'move'}
-                              value={'move'}
-                            >
-                            
-
-                         move
-                        
-                            </SelectItem>
-            
-                        </ScrollArea>
-                      </SelectContent>
-                    </Select>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-
-           
-
-             
-           
-            </div>
-          
-       <Button disabled={isLoading} type="submit">Save changes {isLoading && <Loader className="w-4 h-4 ml-2 animate-spin mt-auto" />}</Button>
+          <Button className="self-start" disabled={isLoading} type="submit">
+            Save changes{" "}
+            {isLoading && (
+              <Loader className="w-4 h-4 ml-2 animate-spin mt-auto" />
+            )}
+          </Button>
         </form>
       </Form>
     </div>
   );
 };
 
-export default (SettingsForm);
+export default SettingsForm;

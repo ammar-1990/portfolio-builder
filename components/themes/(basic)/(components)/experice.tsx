@@ -15,15 +15,20 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   experiences: Experience[];
+  preview?:boolean
 };
 
-const ExperienceBasic = ({ experiences }: Props) => {
+const ExperienceBasic = ({ experiences,preview }: Props) => {
   return (
     <section className={cn("h-screen my-container sticky flex flex-col top-[165px] sm:top-[120px] z-10 bg-gray-300/50 backdrop-blur-lg   border rounded-3xl",!experiences.length && 'hidden')}>
       <Link
         href={"#experience"}
         className="text-4xl font-bold block text-center p-1 py-8 "
+        onClick={(e)=>{
+          preview && e.preventDefault()
+        }} 
       >
+        
         {" "}
         Experience
       </Link>

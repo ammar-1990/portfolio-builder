@@ -29,6 +29,9 @@ const ProjectsBasic = ({ projects,preview }: Props) => {
       <Link
         href={"#projects"}
         className="text-4xl font-bold block text-center p-1 "
+        onClick={(e)=>{
+          preview && e.preventDefault()
+        }} 
       >
         {" "}
         Projects

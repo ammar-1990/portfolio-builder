@@ -19,7 +19,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
           {!!image ? (
             <Link
             scroll
-            href={"#home"}>
+            href={preview ? '' :"#home"}>
               <div className="w-12 h-12 relative  rounded-full overflow-hidden ">
                 <Image
                   fill
@@ -32,7 +32,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
           ) : (
             <Link 
             scroll
-            href={"#home"}>
+            href={preview ? '' : "#home"}>
               <span className="font-bold text-white text-md  md:text-xl">
                 {title}
               </span>
@@ -42,6 +42,9 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
           <nav className={cn("flex items-center sm:gap-x-8 gap-x-2   md:gap-x-20 text-xs md:text-base text-white",preview && 'md:gap-x-2 lg:gap-x-2')}>
             <Link
             scroll
+            onClick={(e)=>{
+              preview && e.preventDefault()
+            }} 
               className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
               href={"#home"}
             >
@@ -49,6 +52,9 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
             </Link>
             {projects && (
               <Link
+              onClick={(e)=>{
+                preview && e.preventDefault()
+              }} 
               scroll
                 className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
                 href={"#projects"}
@@ -58,6 +64,9 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
             )}
             {experience && (
               <Link 
+              onClick={(e)=>{
+                preview && e.preventDefault()
+              }} 
               scroll
                 className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
                 href={"#experience"}
@@ -66,6 +75,9 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
               </Link>
             )}
                 <Link 
+                  onClick={(e)=>{
+                    preview && e.preventDefault()
+                  }} 
               scroll
                 className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
                 href={"#contact"}

@@ -51,7 +51,7 @@ const BasicTheme = ({ portfolio, preview }: Props) => {
         <ProjectsBasic preview={preview} projects={portfolio.projects} />
         <div className="h-[500px]"></div>
         <div className="" id="experience"></div>
-        <ExperienceBasic experiences={portfolio.experiences} />
+        <ExperienceBasic preview={preview} experiences={portfolio.experiences} />
         <div className="h-[500px]" id="contact"></div>
         <ContactBasic portfolio={portfolio} />
       </section>
