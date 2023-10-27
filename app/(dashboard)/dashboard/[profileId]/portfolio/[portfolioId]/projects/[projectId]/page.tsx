@@ -10,9 +10,9 @@ type Props = {
 
 const page =async ({params}: Props) => {
 
-    const isValid = isMongoId(params.projectId)
+    // const isValid = isMongoId(params.projectId)
 
-    if(!isValid && params.projectId !=='new') return redirect('/dashboard')
+    // if(!isValid && params.projectId !=='new') return redirect('/dashboard')
     let project 
 
     if(params.projectId === 'new'){
@@ -28,7 +28,7 @@ const page =async ({params}: Props) => {
             }
         })
 
-        if(!project) return redirect('/dashboard')
+        if(!project) throw Error('Wrong project ID, project does not exist.')
 
    
     }

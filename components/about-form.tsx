@@ -330,7 +330,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                     <FormControl>
                       <Textarea
                         placeholder="Describe your career..."
-                        className="resize-none flex-1"
+                        className="resize-none flex-1 "
                         {...field}
                       />
                     </FormControl>

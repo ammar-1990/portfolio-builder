@@ -44,7 +44,7 @@ const MainBasic = ({title,bio,skills,preview}: Props) => {
     initial={{x:-50,opacity:0,filter: "blur(20px)"}}
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
     viewport={{once:true}}
-    className="text-3xl font-bold tracking-widest capitalize">{title}</motion.h2>
+    className="text-3xl font-bold tracking-widest capitalize text-center">{title}</motion.h2>
     <motion.p 
     initial={{x:-50,opacity:0,filter: "blur(20px)"}}
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}

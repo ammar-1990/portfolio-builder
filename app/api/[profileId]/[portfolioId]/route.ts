@@ -14,7 +14,7 @@ export async function PATCH(req:Request,{params}:{params:{profileId:string,portf
         const portfolioId = params.portfolioId
         if(!portfolioId) return new NextResponse('portfolio Id is required',{status:401})
 
-        const {name, title, bio, country, imageUrl, skills,tel,email,facebook,instagram,linkedin,theme} = await req.json()
+        const {name, title, bio, country, imageUrl, skills,tel,email,facebook,instagram,linkedin,theme,published} = await req.json()
 
 
         if(theme){
@@ -25,7 +25,8 @@ export async function PATCH(req:Request,{params}:{params:{profileId:string,portf
                     profileId:currentProfile.id
                 },
                 data:{
-theme
+theme,
+published
                 }
             })
 

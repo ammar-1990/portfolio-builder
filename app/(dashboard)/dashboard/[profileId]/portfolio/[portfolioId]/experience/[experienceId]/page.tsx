@@ -11,9 +11,9 @@ type Props = {
 
 const page =async ({params}: Props) => {
 
-    const isValid = isMongoId(params.experienceId)
+    // const isValid = isMongoId(params.experienceId)
 
-    if(!isValid && params.experienceId !=='new') return redirect('/dashboard')
+    // if(!isValid && params.experienceId !=='new') return redirect('/dashboard')
     let experience 
 
     if(params.experienceId === 'new'){
@@ -27,7 +27,7 @@ const page =async ({params}: Props) => {
         
         })
 
-        if(!experience) return redirect('/dashboard')
+        if(!experience) throw Error('wrong experience ID, experience does not exist.')
 
    
     }
