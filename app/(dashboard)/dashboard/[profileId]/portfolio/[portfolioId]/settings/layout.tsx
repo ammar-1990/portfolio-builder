@@ -18,7 +18,7 @@ export default function SettingsLayout({
       <div className="flex gap-x-4 justify-between flex-col md:flex-row  gap-8">
         {children}
         <>
-          <div className="relative w-full max-w-[450px] min-w-[300px] h-[550px] border rounded-lg  hover:shadow-md transition overflow-hidden flex-1  self-center ">
+          <div className="relative w-full max-w-[450px] min-w-[300px] h-[550px] border rounded-lg  hover:shadow-md transition overflow-hidden   self-center ">
             <div className="w-full h-full overflow-y-scroll relative z-10 noScroll ">
               {example}
             </div>
