@@ -122,18 +122,18 @@ const SettingsForm = ({ portfolio }: Props) => {
   };
 
   return (
-    <div className="mt-10 flex-1 h-full ">
+    <div className="mt-10 flex-1 h-full border-b ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 flex flex-col h-full   justify-between border-b p-4"
+          className="space-y-4 flex flex-col h-full   justify-between  p-4"
         >
           <div className="flex gap-20 flex-col">
             <FormField
               control={form.control}
               name="theme"
               render={({ field }) => (
-                <FormItem className=" flex-shrink-0 w-fit">
+                <FormItem className=" w-fit">
                   <FormLabel>Choose your theme</FormLabel>
                   <Select
                     onValueChange={field.onChange}
@@ -183,7 +183,7 @@ const SettingsForm = ({ portfolio }: Props) => {
                     <div className=" flex flex-col gap-1 ">
                       <div className="flex items-center gap-1">
                         {" "}
-                        <p className="font-semibold">
+                        <p className="font-semibold text-xs">
                           Your site is published
                         </p>{" "}
                         <div className="border p-2 rounded-xl flex items-center gap-1 self-start">
@@ -193,8 +193,8 @@ const SettingsForm = ({ portfolio }: Props) => {
                       </div>
 
                       <div className="flex items-center gap-3 border rounded-xl p-1 max-w-fit">
-                        <p className="text-xs text-gray-500 overflow-hidden whitespace-nowrap overflow-ellipsis">
-                         {url}
+                        <p className="text-xs text-gray-500 overflow-hidden whitespace-nowrap overflow-ellipsis ">
+                        {url}
                         </p>
                         <TipTool
                           side="right"

@@ -16,7 +16,7 @@ const portfolio = await db.portfolio.findUnique({
 
 if(!portfolio) return redirect('/dashboard')
   return (
-    <div className=''>
+    <div className='w-full md:w-1/3'>
        <h2 className='text-3xl font-bold'>Edit your site</h2>
        <SettingsForm portfolio={portfolio}/>
     </div>
