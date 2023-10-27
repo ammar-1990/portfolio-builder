@@ -19,7 +19,7 @@ type Props = {
 
 const MainColorful = ({ title, bio, skills, preview ,experience,projects,image}: Props) => {
   return (
-    <div className=" h-screen bg-rose-500 sticky top-0 ">
+    <div className={cn(" h-screen bg-rose-500 sticky top-0 ")}>
            <HeaderColorful
         experience={experience}
         projects={projects}

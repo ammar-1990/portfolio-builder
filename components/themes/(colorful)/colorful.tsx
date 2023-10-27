@@ -43,6 +43,7 @@ const ColorfulTheme = ({ portfolio, preview }: Props) => {
         image={portfolio.imageUrl}
       />
       <ProjectsColorful projects={portfolio.projects} />
+      <div className="sticky top-0 h-screen bg-yellow-200 text-slate-800 text-4xl font-bold">asdasd</div>
     
   
 
