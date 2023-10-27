@@ -33,7 +33,7 @@ import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useModal } from "@/hooks/modal-hook";
-import { Copy, Globe, Loader } from "lucide-react";
+import { Check, Copy, Globe, Loader } from "lucide-react";
 import { useOrigin } from "@/hooks/useOrigin";
 import TipTool from "./tip-tool";
 import { cn } from "@/lib/utils";
@@ -109,7 +109,7 @@ const SettingsForm = ({ portfolio }: Props) => {
   }, [form.getValues("theme"), form.getValues("published")]);
 
   const origin = useOrigin();
-  const url = ` ${origin}/preview/${params.portfolioId}`
+  const url = ` ${origin}/preview/${params.portfolioId}`;
 
   const copy = () => {
     navigator.clipboard.writeText(url);
@@ -158,10 +158,10 @@ const SettingsForm = ({ portfolio }: Props) => {
                         </SelectItem>
                         <SelectItem
                           className="cursor-pointer capitalize"
-                          key={"move"}
-                          value={"move"}
+                          key={"colorful"}
+                          value={"colorful"}
                         >
-                          move
+                          colorful
                         </SelectItem>
                       </ScrollArea>
                     </SelectContent>
@@ -194,20 +194,33 @@ const SettingsForm = ({ portfolio }: Props) => {
 
                       <div className="flex items-center gap-3 border rounded-xl p-1 max-w-fit">
                         <p className="text-xs text-gray-500 overflow-hidden whitespace-nowrap overflow-ellipsis ">
-                        {url}
+                          {url}
                         </p>
                         <TipTool
                           side="right"
                           title={copied ? "Copied" : "Copy"}
                         >
-                          <Button className={cn("text-xs",copied && 'cursor-default opacity-70 ')} onClick={copy} type="button" variant={'ghost'} size={'sm'}>
+                          <Button
+                            className={cn(
+                              "text-xs",
+                              copied && "cursor-default opacity-70 "
+                            )}
+                            onClick={copy}
+                            type="button"
+                            variant={"ghost"}
+                            size={"sm"}
+                          >
                             {copied ? "Copied" : "Copy"}{" "}
-                            <Copy className="w-3 h-3 ml-1" />
+                            {copied ? (
+                              <Check className="w-3 h-3 ml-1" />
+                            ) : (
+                              <Copy className="w-3 h-3 ml-1" />
+                            )}
                           </Button>
                         </TipTool>
                       </div>
                       <Button
-                       disabled={isLoading}
+                        disabled={isLoading}
                         onClick={() => {
                           field.onChange(false);
                         }}
@@ -217,18 +230,19 @@ const SettingsForm = ({ portfolio }: Props) => {
                       </Button>
                     </div>
                   ) : (
-                    <div
-                      className=""
-                     
-                    >
-
-                      <p className="text-sm text-gray-600 py-2">Your site is unpublished</p>
+                    <div className="">
+                      <p className="text-sm text-gray-600 py-2">
+                        Your site is unpublished
+                      </p>
                       <Button
-                      disabled={isLoading}
-                      type="button"  onClick={() => {
-                        field.onChange(true);
-                      }}>Publish <Globe className="w-4 h-4 ml-2" /></Button>
-                      
+                        disabled={isLoading}
+                        type="button"
+                        onClick={() => {
+                          field.onChange(true);
+                        }}
+                      >
+                        Publish <Globe className="w-4 h-4 ml-2" />
+                      </Button>
                     </div>
                   )}
 

@@ -3,7 +3,7 @@ import db from '@/lib/prisma'
 import React from 'react'
 import { redirect } from 'next/navigation'
 import BasicTheme from '@/components/themes/(basic)/basic'
-import MoveTheme from '@/components/themes/(move)/move'
+import MoveTheme from '@/components/themes/(colorful)/colorful'
 
 type Props = {
     params:{portfolioId:string}
@@ -29,7 +29,7 @@ const ExamplePage =async ({params}: Props) => {
 
     const preview : { [key: string]: JSX.Element } = {
         basic:<BasicTheme preview={true} portfolio={portfolio} />,
-        move:<MoveTheme />
+        colorful:<MoveTheme portfolio={portfolio} />
     }
  
   return (
