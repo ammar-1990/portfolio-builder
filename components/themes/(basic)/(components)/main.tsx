@@ -44,13 +44,13 @@ const MainBasic = ({title,bio,skills,preview}: Props) => {
     initial={{x:-50,opacity:0,filter: "blur(20px)"}}
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
     viewport={{once:true}}
-    className="text-3xl font-bold tracking-widest capitalize text-center">{title}</motion.h2>
+    className={cn("text-3xl font-bold tracking-widest capitalize text-center",preview && 'text-xl')}>{title}</motion.h2>
     <motion.p 
     initial={{x:-50,opacity:0,filter: "blur(20px)"}}
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}
     transition={{delay:0.3}}
     viewport={{once:true}}
-    className={cn(" text-neutral-600 first-letter:capitalize text-center   max-w-[600px] mt-5 text-sm  overflow-y-auto myScroll", preview && 'text-xs')}>{bio}</motion.p>
+    className={cn(" text-neutral-600 first-letter:capitalize text-center px-2   max-w-[600px] mt-5 text-sm  overflow-y-auto myScroll", preview && 'text-xs')}>{bio}</motion.p>
     
     <motion.div 
       variants={container}
@@ -58,12 +58,12 @@ const MainBasic = ({title,bio,skills,preview}: Props) => {
       whileInView="show"
       viewport={{once:true}}
     
-    className="flex items-center  w-full max-w-[700px]  justify-center gap-x-4 sm:gap-x-8 gap-y-5 mt-10 flex-wrap">
+    className={cn("flex items-center  w-full max-w-[700px]  justify-center gap-x-4 sm:gap-x-8 gap-y-5 mt-10 flex-wrap",preview && 'gap-x-2 sm:gap-x-2 md:gap-x-2')}>
        {skills.map((skill,i)=>
        <motion.div
        variants={item}
       
-       className="capitalize py-2 px-4  flex-shrink-0 bg-black text-white rounded-full sm:text-xs text-[9px]" key={skill}>{skill}</motion.div>)}
+       className={cn("capitalize py-2 px-4  flex-shrink-0 bg-black text-white rounded-full sm:text-xs text-[9px]",preview && 'py-2 px-3 text-[9px] sm:text-[9px]  ')} key={skill}>{skill}</motion.div>)}
     </motion.div>
           </motion.section>
   )

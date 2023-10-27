@@ -11,7 +11,7 @@ type Props = {
 
 const ProjectsColorful = ({projects,preview}: Props) => {
   return (
-    <div className='h-screen bg-slate-800'>ProjectsColorful</div>
+    <div className='h-screen bg-slate-800 sticky top-0 text-white font-bold '>ProjectsColorful</div>
   )
 }
 

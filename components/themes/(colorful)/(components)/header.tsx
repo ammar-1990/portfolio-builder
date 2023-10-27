@@ -23,24 +23,11 @@ const HeaderColorful = ({
 }: Props) => {
 
 
-const [scroll, setScroll] = useState(false)
 
-useEffect(()=>{
-
-  const handleScroll = ()=>{
-    scrollY > 15 ? setScroll(true) : setScroll(false)
-  }
-
-
-  window.addEventListener('scroll',handleScroll)
-
-
-  return ()=>window.removeEventListener('scroll',handleScroll)
-},[])
 
   return (
-    <header className={cn(" py-4 bg-rose-500 transition duration-300 fixed top-0 left-0 w-full",scroll && 'bg-white')}>
-      <div  className={cn("flex items-center justify-between text-white container transition duration-300 ",scroll && 'text-rose-500')}>
+    <header className={cn(" py-4 bg-rose-500 transition duration-300  w-full absolute top-0 left-0")}>
+      <div  className={cn("flex items-center justify-between text-white container transition duration-300 ")}>
         <Link href="#home">
           {image ? (
             <div className="w-16 h-16 relative   overflow-hidden">

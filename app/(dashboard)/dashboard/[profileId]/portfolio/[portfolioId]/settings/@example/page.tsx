@@ -29,7 +29,7 @@ const ExamplePage =async ({params}: Props) => {
 
     const preview : { [key: string]: JSX.Element } = {
         basic:<BasicTheme preview={true} portfolio={portfolio} />,
-        colorful:<MoveTheme portfolio={portfolio} />
+        colorful:<MoveTheme preview={true} portfolio={portfolio} />
     }
  
   return (
