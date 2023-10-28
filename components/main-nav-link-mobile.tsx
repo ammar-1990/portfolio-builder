@@ -47,17 +47,16 @@ const MainnavLinkMobile = (props: Props) => {
         pathname ===
         `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/settings`,
     },
-   
-   
   ];
 
   return (
-    <div className=" items-center  flex justify-between px-6 sm:hidden h-12 border-b ">
+    <div className=" items-center  flex justify-between px-6 sm:hidden  min-h-[50px] p-2 border-b overflow-x-auto gap-5 noScroll">
       {links.map((link) => (
         <Link
           className={cn(
             "text-zinc-600 capitalize transition text-xs hover:text-black",
-            link.active && "text-black font-semibold border-b border-black h-full flex items-center justify-center "
+            link.active &&
+              "text-black font-semibold border-b border-black h-full flex items-center justify-center "
           )}
           key={link.label}
           href={link.url}
@@ -65,7 +64,18 @@ const MainnavLinkMobile = (props: Props) => {
           {link.label}
         </Link>
       ))}
-        <Link href={`/preview/${params.portfolioId}`} className=""><Button variant={'default'} size={'sm'} className="text-xs" >Preivew</Button></Link>
+      <Link href={`/preview/${params.portfolioId}`} className="">
+        <Button variant={"default"} size={"sm"} className="text-xs p-1">
+          Preivew
+        </Button>
+      </Link>
+      <Link
+        href={`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/resume`}
+      >
+        <Button variant={"default"} size={"sm"} className="text-xs p-1">
+          Resume
+        </Button>
+      </Link>
     </div>
   );
 };

@@ -85,6 +85,7 @@ model Project {
 model Experience{
   id            String @id @default(auto()) @map("_id") @db.ObjectId 
    place         String
+   title         String?
    description   String?
    startDate    DateTime?
    endDate      DateTime?

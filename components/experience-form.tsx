@@ -48,6 +48,9 @@ const formSchema = z.object({
   place: z.string().min(1, {
     message: "Place is required.",
   }),
+  title: z.string().min(1, {
+    message: "Title is required.",
+  }),
   description: z.string().optional(),
 startDate:z.date().optional(),
 endDate:z.date().optional()
@@ -64,6 +67,7 @@ const ExperienceForm = ({ experience }: Props) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      title:experience?.title || '',
       place: experience?.place || "",
       description: experience?.description || "",
       startDate: experience?.startDate || undefined,
@@ -129,6 +133,20 @@ const ExperienceForm = ({ experience }: Props) => {
         >
           <div className="">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-3">
+            <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem className="sm:col-span-2">
+                    <FormLabel>Title*</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Job title" {...field} />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <FormField
                 control={form.control}
                 name="place"
@@ -136,7 +154,7 @@ const ExperienceForm = ({ experience }: Props) => {
                   <FormItem className="sm:col-span-2">
                     <FormLabel>Place*</FormLabel>
                     <FormControl>
-                      <Input placeholder="any company" {...field} />
+                      <Input placeholder="Place of your job" {...field} />
                     </FormControl>
 
                     <FormMessage />

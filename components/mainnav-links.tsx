@@ -45,11 +45,11 @@ const MainnavLinks = (props: Props) => {
   ];
 
   return (
-    <div className=" items-center gap-x-7 hidden sm:flex h-full">
+    <div className=" items-center gap-x-4 md:gap-x-7 hidden sm:flex h-full">
       {links.map((link) => (
         <Link
           className={cn(
-            "text-zinc-600 capitalize transition hover:text-black  ",
+            "text-zinc-600 capitalize transition hover:text-black  text-xs md:text-base",
             link.active && "text-black font-bold border-b border-black h-full flex items-center justify-center  "
           )}
           key={link.label}
@@ -58,7 +58,8 @@ const MainnavLinks = (props: Props) => {
           {link.label}
         </Link>
       ))}
-            <Link href={`/preview/${params.portfolioId}`} className=""><Button variant={'default'} size={'sm'}>Preivew</Button></Link>
+            <Link href={`/preview/${params.portfolioId}`} className=""><Button className=" text-xs" variant={'default'} size={'sm'}>Preivew</Button></Link>
+            <Link href={`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/resume`} className=""><Button className=" text-xs" variant={'default'} size={'sm'}>Resume</Button></Link>
     </div>
   );
 };

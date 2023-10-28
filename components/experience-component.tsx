@@ -39,8 +39,12 @@ const ExperienceComponent = ({ experience, preview,readOnly }: Props) => {
           Preview <ZoomInIcon className="w-4 h-4" />
         </span>
       </div>
+     
       <h2 className="text-xl font-semibold capitalize line-clamp-1">
         {experience.place}
+      </h2>
+      <h2 className=" font-semibold text-neutral-500 text-sm capitalize line-clamp-1">
+        {experience.title}
       </h2>
       <div className="flex items-center gap-x-3 text-neutral-500 text-xs mt-4">
         <span>{experience.startDate?.toLocaleDateString()}</span>

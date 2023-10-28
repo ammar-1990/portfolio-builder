@@ -22,9 +22,7 @@ const AvatarComponent = ({ currentProfile }: Props) => {
 
   return (
     <div className="flex items-center gap-x-2">
-      <p className="text-sm capitalize font-semibold">
-        {currentProfile?.name.split(' ')[0]}
-      </p>
+    
       <DropdownMenu>
         <DropdownMenuTrigger className="outline-none">
           <Avatar>
@@ -33,6 +31,9 @@ const AvatarComponent = ({ currentProfile }: Props) => {
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+        <DropdownMenuLabel className="flex items-center gap-x-1">Hello <span className="capitalize">{ currentProfile?.name.split(' ')[0]}</span>    </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+       
           <DropdownMenuItem
             onClick={async() => {
              await signOut({ redirect: true, callbackUrl: "/" });

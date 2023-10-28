@@ -22,6 +22,7 @@ const ExperienceModal = (props: Props) => {
       <DialogContent className="">
         <div className="w-full p-4">
         <h2 className='text-2xl font-semibold capitalize '>{data?.experience?.place}</h2>
+        <h2 className='text-lg font-semibold capitalize text-neutral-500 '>{data?.experience?.title}</h2>
         <div className='flex items-center gap-x-3 text-neutral-500 text-xs mt-4'>
 <span>{data?.experience?.startDate?.toLocaleDateString()}</span>
 <span>{data?.experience?.endDate?.toLocaleDateString()}</span>
