@@ -46,7 +46,8 @@ const ExperienceBasic = ({ experiences,preview }: Props) => {
               </TimelineSeparator>
               <TimelineContent>
                 <ExperienceComponent
-                preview={true}
+                readOnly={true}
+                preview={preview}
                   key={experience.id}
                   experience={experience}
                 />

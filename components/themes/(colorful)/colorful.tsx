@@ -30,7 +30,7 @@ const montserrat = Montserrat({
 
 const ColorfulTheme = ({ portfolio, preview }: Props) => {
   return (
-    <div className={cn(montserrat.className,'noScroll overflow-y-auto h-screen')}>
+    <div className={cn(montserrat.className,'noScroll overflow-y-auto h-screen scroll-smooth')}>
   
    
       <MainColorful
@@ -44,8 +44,11 @@ const ColorfulTheme = ({ portfolio, preview }: Props) => {
 
         image={portfolio.imageUrl}
       />
+      <div id="projects"></div>
       <ProjectsColorful projects={portfolio.projects} preview={preview} />
+      <div id="experience"></div>
       <ExperienceColorful preview={preview} experiences={portfolio.experiences}/>
+      <div id="contact"></div>
       <ContactColorful portfolio={portfolio} />
      
     

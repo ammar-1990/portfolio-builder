@@ -29,7 +29,7 @@ const ProjectComponent = ({ project,preview }: props) => {
     initial={{opacity:0}}
     whileInView={{opacity:1}}
     transition={{duration:1,delay:0.2}}
-      onClick={() => setShow(() => true)}
+      onClick={() =>!preview && setShow(() => true)}
       key={project.id}
       className={cn("rounded-sm overflow-hidden   snap-start group cursor-pointer relative w-[200px] sm:w-[350px] flex-shrink-0 ",preview && 'sm:w-[200px]')}
     >

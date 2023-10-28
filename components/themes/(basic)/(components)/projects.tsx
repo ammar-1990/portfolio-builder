@@ -60,12 +60,12 @@ const ProjectsBasic = ({ projects,preview }: Props) => {
                 opacity-0 p-4 group-hover:opacity-100  duration-500 group-hover:delay-300 h-full z-50"
               >
                 <h2 className="text-white font-bold">{project.title}</h2>
-                <p className="text-white text-xs line-clamp-5 ">
+                <p className="text-white text-xs line-clamp-3 ">
                   {project?.description}
                 </p>
                 <span
-                  className="cursor-pointer flex items-center gap-x-2 text-white mt-14 w-fit mx-auto"
-                  onClick={() => onOpen("project-modal", { project: project })}
+                  className="cursor-pointer flex items-center gap-x-2 text-white mt-3 sm:mt-6 w-fit mx-auto"
+                  onClick={() =>!preview && onOpen("project-modal", { project: project })}
                 >
                   Preview <ZoomInIcon className="w-4 h-4" />
                 </span>
