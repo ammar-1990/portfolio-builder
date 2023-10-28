@@ -9,16 +9,16 @@ type Props = {
 
 const ContactBasic = ({ portfolio }: Props) => {
   return (
-    <div className="h-[200px]  mt-52 relative my-container  z-10 bg-black/90 rounded-t-3xl ">
+    <div className="min-h-[100px]  mt-52 relative   z-10 bg-black/90  ">
       <Link
         href={"#contact"}
-        className="md:text-4xl font-bold block text-center p-1 pt-5 text-white text-xl"
+        className="md:text-2xl font-bold block text-center p-1 pt-5 text-white text-xl"
       >
         {" "}
         Contact
       </Link>
 
-      <div className="mt-8 flex items-center flex-wrap justify-center gap-8 w-full">
+      <div className="mt-2 flex items-center flex-wrap justify-center gap-8 w-full">
         <Link href={`mailto:${portfolio.email}`} >
         <div className="text-white text-xs flex items-center gap-x-2">
           <Mail className="w-4 h-4 " />

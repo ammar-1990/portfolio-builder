@@ -3,21 +3,15 @@ import {motion} from 'framer-motion'
 
 type Props = {experience:Experience}
 
-const item = {
-    hidden: { opacity: 0,x:-10 },
-    show: { opacity: 1,x:0 }
 
-
-   
-  }
 
 const ExperienceComponent = ({experience}: Props) => {
   return (
     <motion.div
           
-    variants={item}
+ 
 
-    key={experience.id} className="p-6 rounded-lg bg-slate-800">
+    key={experience.id} className="p-6 rounded-lg bg-slate-800 w-[300px] sm:w-[400px] flex-shrink-0 snap-start ">
       <h3 className="text-slate-200 text-xl font-bold capitalize  pb-1 ">
         {experience.place}
       </h3>
@@ -25,7 +19,7 @@ const ExperienceComponent = ({experience}: Props) => {
         experience.startDate?.toLocaleDateString() || "N/A"
       } - To: ${experience.endDate?.toLocaleDateString() || "N/A"}`}</p>
 
-      <p className="text-xs text-slate-200 mt-2 font-normal max-h-[400px] overflow-y-auto myScroll">
+      <p className="text-xs text-slate-200 mt-2 font-normal max-h-[200px] overflow-y-auto myScroll">
         {experience.description}
       </p>
     </motion.div>

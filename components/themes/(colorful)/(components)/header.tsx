@@ -39,7 +39,7 @@ const HeaderColorful = ({
         </Link>
      
 
-      <nav className='flex items-center gap-x-6 font-semibold'>
+      <nav className={cn('flex items-center gap-x-6 font-semibold text-xs sm:text-base',preview && 'text-xs')}>
         {projects && <Link href={'#projects'}>Projects</Link>}
         {experience && <Link href={'#experience'}>Experience</Link>}
        <Link href={'#contact'}>Contact</Link>

@@ -58,12 +58,12 @@ const MainBasic = ({title,bio,skills,preview}: Props) => {
       whileInView="show"
       viewport={{once:true}}
     
-    className={cn("flex items-center  w-full max-w-[700px]  justify-center gap-x-4 sm:gap-x-8 gap-y-5 mt-10 flex-wrap",preview && 'gap-x-2 sm:gap-x-2 md:gap-x-2')}>
+    className={cn("flex items-center  w-full max-w-[700px]  justify-center  mt-10 flex-wrap",preview && 'gap-x-2 sm:gap-x-2 md:gap-x-2')}>
        {skills.map((skill,i)=>
        <motion.div
        variants={item}
       
-       className={cn("capitalize py-2 px-4  flex-shrink-0 bg-black text-white rounded-full sm:text-xs text-[9px]",preview && 'py-2 px-3 text-[9px] sm:text-[9px]  ')} key={skill}>{skill}</motion.div>)}
+       className={cn("capitalize py-2 px-4  flex-shrink-0  text-black font-bold rounded-full sm:text-xs text-[9px]",preview && 'py-2 px-3 text-[9px] sm:text-[9px]  ')} key={skill}>{skill}</motion.div>)}
     </motion.div>
           </motion.section>
   )

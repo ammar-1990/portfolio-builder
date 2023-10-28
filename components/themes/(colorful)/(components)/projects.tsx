@@ -25,7 +25,7 @@ const ProjectsColorful = ({ projects, preview }: Props) => {
          initial={{ opacity: 0, x: -100 }}
          whileInView={{ opacity: 1, x: 0 }}
          transition={{  duration: 1 }}
-      className="text-white text-lg sm:text-3xl md:text-5xl lg:text-7xl p-8 sm:p-20 uppercase">
+      className={cn("text-white text-lg sm:text-3xl md:text-5xl lg:text-7xl p-8 sm:p-20 uppercase", preview && "text-lg sm:text-lg md:text-lg lg:text-lg")}>
         projects
       </motion.h2>
         <div className="mt-10 flex items-center max-w-[1100px] mx-auto overflow-x-auto myScroll gap-4 p-3 snap-mandatory  snap-x overflow-y-hidden">

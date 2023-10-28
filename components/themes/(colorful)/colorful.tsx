@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import MainColorful from "./(components)/main";
 import ProjectsColorful from "./(components)/projects";
 import ExperienceColorful from "./(components)/experience";
+import ContactColorful from "./(components)/contact";
 
 type ProjectWithImages = Project & { images: PImage[] };
 type Props = {
@@ -43,8 +44,9 @@ const ColorfulTheme = ({ portfolio, preview }: Props) => {
 
         image={portfolio.imageUrl}
       />
-      <ProjectsColorful projects={portfolio.projects} />
+      <ProjectsColorful projects={portfolio.projects} preview={preview} />
       <ExperienceColorful preview={preview} experiences={portfolio.experiences}/>
+      <ContactColorful portfolio={portfolio} />
      
     
   
