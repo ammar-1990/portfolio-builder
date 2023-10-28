@@ -12,6 +12,7 @@ import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import MainColorful from "./(components)/main";
 import ProjectsColorful from "./(components)/projects";
+import ExperienceColorful from "./(components)/experience";
 
 type ProjectWithImages = Project & { images: PImage[] };
 type Props = {
@@ -28,7 +29,7 @@ const montserrat = Montserrat({
 
 const ColorfulTheme = ({ portfolio, preview }: Props) => {
   return (
-    <div className={cn(montserrat.className,'bg-rose-500')}>
+    <div className={cn(montserrat.className,'noScroll overflow-y-auto h-screen')}>
   
    
       <MainColorful
@@ -43,7 +44,8 @@ const ColorfulTheme = ({ portfolio, preview }: Props) => {
         image={portfolio.imageUrl}
       />
       <ProjectsColorful projects={portfolio.projects} />
-      <div className="sticky top-0 h-screen bg-yellow-200 text-slate-800 text-4xl font-bold">asdasd</div>
+      <ExperienceColorful preview={preview} experiences={portfolio.experiences}/>
+     
     
   
 

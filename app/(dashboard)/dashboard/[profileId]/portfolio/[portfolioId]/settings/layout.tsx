@@ -18,7 +18,7 @@ export default function SettingsLayout({
       <div className="flex gap-x-4 justify-between flex-col md:flex-row  gap-8">
         {children}
         <>
-          <div className="relative w-full max-w-[450px] min-w-[300px] h-[550px] border rounded-lg  hover:shadow-md transition overflow-hidden   self-center ">
+          <div className="relative w-full max-w-[450px] min-w-[300px] h-[550px] border rounded-lg  hover:ring-1 ring-black ring-offset-2 transition overflow-hidden   self-center ">
             <div className="w-full h-full overflow-y-scroll relative z-10 noScroll ">
               {example}
             </div>
@@ -26,7 +26,7 @@ export default function SettingsLayout({
               <TipTool side="bottom" title="Full screen" preview={true}>
                 <button
                   type="button"
-                  className="rounded-full bg-white text-black flex items-center justify-center p-0 w-10 h-10 border-black absolute border hover:scale-110 active:scale-95 transition bottom-5 right-5 z-30"
+                  className="rounded-full bg-white  flex items-center justify-center p-0 w-10 h-10 text-gray-700 absolute border hover:scale-110 active:scale-95 transition bottom-5 right-5 z-30"
                   onClick={() => setShow(true)}
                 >
                   <Fullscreen className="w-6 h-6 " />
