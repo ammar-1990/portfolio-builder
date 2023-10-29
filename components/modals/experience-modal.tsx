@@ -30,6 +30,11 @@ const ExperienceModal = (props: Props) => {
         </div>
 
 <p className='mt-4 text-neutral-500 text-xs overflow-y-auto max-h-[250px] myScroll mb-4'>{data?.experience?.description}</p>
+<div>
+{data?.experience?.achievments.map((achievment)=><p className="text-xs text-neutral-500 p-1" key={achievment}>&bull; {achievment}</p>)}
+
+</div>
+
         </div>
       </DialogContent>
     </Dialog>

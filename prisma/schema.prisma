@@ -87,6 +87,7 @@ model Experience{
    place         String
    title         String?
    description   String?
+   achievments   String[] @default([])
    startDate    DateTime?
    endDate      DateTime?
 

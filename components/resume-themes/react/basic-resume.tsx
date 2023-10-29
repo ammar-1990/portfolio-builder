@@ -28,15 +28,15 @@ const ResumeBasic = ({ portfolio }:props) => (
         <h2 className="font-bold text-[1vw] mt-[1vw] border-b pb-1 uppercase">Experience</h2>
         {portfolio.experiences.map((experience) => (
           <div key={experience.id} className="mt-[0.5vw]">
-            <p className="text-[0.9vw] mt-[0.08vw] font-extrabold capitalize">{experience.title}</p>
+            <p className="text-[0.9vw] mt-[1vw] font-extrabold capitalize">{experience.title}</p>
             <div className="flex-row flex-wrap flex justify-between">
               <p className="text-[0.8vw] mt-[0.08vw] font-bold capitalize">{experience.place}</p>
-              <div className="flex-row flex-wrap flex gap-1 mt-[0.08vw]">
+              <div className="flex-row flex-wrap flex gap-3 mt-[0.08vw] text-black font-semibold">
                 <p className="text-[0.8vw]">{experience.startDate?.toLocaleDateString()}</p>
                 <p className="text-[0.8vw]">{experience.endDate?.toLocaleDateString()}</p>
               </div>
             </div>
-            <p className="text-[0.8vw] mt-[0.08vw] text-gray-500">{experience.description}</p>
+            <div className="text-[0.8vw] mt-[0.08vw] text-gray-500">{experience.achievments.map((achievment)=><p key={achievment}>&bull; {achievment}</p>)}</div>
           </div>
         ))}
       </div>

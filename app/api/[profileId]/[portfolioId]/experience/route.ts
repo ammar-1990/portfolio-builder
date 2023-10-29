@@ -13,7 +13,7 @@ const {profileId, portfolioId} = params
 if(!profileId) return new NextResponse('profile Id is required',{status:400})
 if(!portfolioId) return new NextResponse('portfolio Id is required',{status:400})
 
-const {title,place, description, startDate, endDate} = await req.json()
+const {title,place, description,achievments, startDate, endDate} = await req.json()
 if(!title) return new NextResponse('title is required',{status:400})
 if(!place) return new NextResponse('place is required',{status:400})
 
@@ -33,6 +33,7 @@ const experience = await db.experience.create({
         title,
         place,
         description,
+        achievments,
         startDate,
         endDate
     }

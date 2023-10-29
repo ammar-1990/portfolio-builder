@@ -51,6 +51,11 @@ const formSchema = z.object({
   title: z.string().min(1, {
     message: "Title is required.",
   }),
+  achievments : z
+  .array(z.string())
+  .max(5, { message: "Maximum of 10 skills" })
+  .optional(),
+
   description: z.string().optional(),
 startDate:z.date().optional(),
 endDate:z.date().optional()
@@ -68,6 +73,7 @@ const ExperienceForm = ({ experience }: Props) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title:experience?.title || '',
+      achievments:experience?.achievments || [],
       place: experience?.place || "",
       description: experience?.description || "",
       startDate: experience?.startDate || undefined,
@@ -122,7 +128,35 @@ const ExperienceForm = ({ experience }: Props) => {
   const { onOpen } = useModal();
 
 
+const avhievmentRef = useRef<HTMLInputElement | null>(null)
+const handleButtonClick = useCallback(() => {
+  if (!avhievmentRef.current?.value || form.getValues('achievments')?.length! >=5 ) return;
+  const myArray = form.getValues("achievments");
+  form.setValue("achievments", [...myArray!, avhievmentRef.current?.value]);
+  avhievmentRef.current.value = "";
+}, [form]);
 
+useEffect(() => {
+  const handleEvent = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleButtonClick();
+    }
+  };
+
+  document.addEventListener("keydown", handleEvent);
+
+  return () => document.removeEventListener("keydown", handleEvent);
+}, [handleButtonClick]);
+
+
+const metricRegex = /\d|%/
+
+const metricCheck = (bullet:string)=>{
+
+  return !!/\d|%/.test(bullet)
+
+}
 
   return (
     <div className="mt-10 flex-1  ">
@@ -140,7 +174,7 @@ const ExperienceForm = ({ experience }: Props) => {
                   <FormItem className="sm:col-span-2">
                     <FormLabel>Title*</FormLabel>
                     <FormControl>
-                      <Input placeholder="Job title" {...field} />
+                      <Input placeholder="Manager" {...field} />
                     </FormControl>
 
                     <FormMessage />
@@ -154,8 +188,66 @@ const ExperienceForm = ({ experience }: Props) => {
                   <FormItem className="sm:col-span-2">
                     <FormLabel>Place*</FormLabel>
                     <FormControl>
-                      <Input placeholder="Place of your job" {...field} />
+                      <Input placeholder="Google.." {...field} />
                     </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+               <FormField
+                control={form.control}
+                name="achievments"
+                render={({ field }) => (
+                  <FormItem className="sm:col-span-2">
+                    <FormLabel>Achievments</FormLabel>
+                    <div className="flex items-center gap-x-2">
+                      <FormControl>
+                        <Input ref={avhievmentRef} placeholder="Programming.." />
+                      </FormControl>
+                      <Button
+                        type="button"
+                        onClick={handleButtonClick}
+                        disabled={field.value?.length! >= 5}
+                      >
+                        Add
+                      </Button>
+                    </div>
+                    <FormDescription className="text-xs">
+                      You can add up do 5 bullet points to tell about your achievments.
+                    </FormDescription>
+                    <div className=" flex flex-col gap-1  w-full">
+                      {field.value?.map((value) => 
+                        {
+                        
+                        return  <span
+                          key={uuidv4()}
+                          className={cn("px-3 py-2 border bg-black text-white  rounded-md text-xs  gap-x-3    ",!metricCheck(value) && 'bg-amber-200 border-amber-500 text-black ' )}
+                        >
+                          <span className="capitalize w-full justify-between flex"> <p className={cn("flex-1 text-ellipsis overflow-hidden")}>&bull; {value}</p>
+                         
+                         <XIcon
+                           className="w-4 h-4 cursor-pointer "
+                           onClick={() => {
+                             field.onChange([
+                               ...field.value?.filter(
+                                 (item) => item !== value
+                               )!,
+                             ]);
+                           }}
+                         /></span>
+                         
+                           {!metricCheck(value)&& <p className="p-1 text-xs  font-bold text-amber-600">It is recommended to add metrics and measurments to your bullet points</p>}
+                        </span>
+                       
+                        }
+                      )}
+                    </div>
+                    {field.value?.length! >= 5 && (
+                      <p className="py-1 text-sm text-rose-500">
+                       You&apos;ve reached the maximum of 5 achievments!
+                      </p>
+                    )}
 
                     <FormMessage />
                   </FormItem>

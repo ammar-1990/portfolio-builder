@@ -143,7 +143,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
   const { onOpen } = useModal();
 
   const handleButtonClick = useCallback(() => {
-    if (!skillRef.current?.value) return;
+    if (!skillRef.current?.value || form.getValues('skills')?.length! >=10 ) return;
     const myArray = form.getValues("skills");
     form.setValue("skills", [...myArray!, skillRef.current?.value]);
     skillRef.current.value = "";

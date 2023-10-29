@@ -84,7 +84,7 @@ body,
 
 
 .myScroll::-webkit-scrollbar {
-  @apply w-2 h-2
+  @apply w-1 h-2
 }
 
 .myScroll::-webkit-scrollbar-thumb {
