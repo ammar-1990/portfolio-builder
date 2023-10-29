@@ -25,7 +25,7 @@ const ResumePage = async ({ params }: Props) => {
     );
 
   return (
-    <div className="h-full pb-20">
+    <div className="h-full pb-20 flex-1">
       <h2 className="text-3xl font-bold">Resume</h2>
       <ResumeComponent portfolio={portfolio} />
     </div>

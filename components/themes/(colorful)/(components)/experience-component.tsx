@@ -18,7 +18,7 @@ const ExperienceComponent = ({ experience }: Props) => {
       <p className="text-xs text-slate-200 mt-2 font-medium">{`From: ${
         experience.startDate?.toLocaleDateString() || "N/A"
       } - To: ${experience.endDate?.toLocaleDateString() || "N/A"}`}</p>
-      <div className="max-h-[200px] overflow-y-auto myScroll p-1">
+      <div className="max-h-[200px] overflow-y-auto myScroll p-1 mt-3">
       <p className="text-xs text-slate-200 mt-2 font-normal ">
         {experience.description}
       </p>

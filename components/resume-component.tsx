@@ -50,7 +50,7 @@ const ResumeComponent = ({ portfolio }: Props) => {
 
 
   return (
-    <div className="p-5">
+    <div className="p-5   flex-1">
       <Button className="mt-10 hidden lg:flex  items-center" onClick={() => setShow(true)} variant={"ghost"}>
         Show Resume Full screen <EyeIcon className="w-4 h-4 ml-2" />
       </Button>
