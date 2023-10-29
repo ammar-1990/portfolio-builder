@@ -28,12 +28,14 @@ const ExperienceModal = (props: Props) => {
 <span>{data?.experience?.endDate?.toLocaleDateString()}</span>
 
         </div>
-
-<p className='mt-4 text-neutral-500 text-xs overflow-y-auto max-h-[250px] myScroll mb-4'>{data?.experience?.description}</p>
-<div>
-{data?.experience?.achievments.map((achievment)=><p className="text-xs text-neutral-500 p-1" key={achievment}>&bull; {achievment}</p>)}
+<div className="p-1 overflow-y-auto max-h-[200px] myScroll mt-4 ">
+<p className='mt-4 text-neutral-500 text-xs '>{data?.experience?.description}</p>
+<div className="mt-3">
+{data?.experience?.achievments.map((achievment)=><p className="text-xs text-neutral-500 px-1" key={achievment}>&bull; {achievment}</p>)}
 
 </div>
+</div>
+
 
         </div>
       </DialogContent>
