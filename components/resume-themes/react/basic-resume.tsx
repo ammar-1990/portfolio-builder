@@ -42,7 +42,7 @@ const ResumeBasic = ({ portfolio }:props) => (
       </div>
       <div>
         <h2 className="font-bold text-[1vw] mt-[1vw] border-b pb-1 uppercase">Skills</h2>
-        <div className="flex-row flex-wrap gap-1 flex">
+        <div className="flex-row flex-wrap gap-[0.3vw] flex">
           {portfolio.skills.map((skill, i) => (
             <p key={skill} className="text-[0.8vw] mt-[1vw] text-gray-500">
               {i !== 0 && " - "}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Portfolio } from "@prisma/client";
+import {  Portfolio } from "@prisma/client";
 
 import React, { useCallback, useRef } from "react";
 
@@ -40,6 +40,7 @@ import { useEffect, useState } from "react";
 import { Loader, XIcon } from "lucide-react";
 import Image from "next/image";
 
+
 const phoneRegex = new RegExp(
   /^\+\d{1,3}\d{10}$/
 );
@@ -51,6 +52,15 @@ const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:[a-zA-Z0-9
 const optionalString = z.string().refine(value => value === '' || value !== undefined, {
   message: 'This field must be a valid URL or left empty',
 });
+
+const ExpertiseEnum = z.enum([
+  "BEGINNER",
+  "INTERMEDIATE",
+  "FLUENT",
+  "NATIVE",
+]);
+
+
 
 
 const formSchema = z.object({
@@ -77,6 +87,7 @@ const formSchema = z.object({
     .array(z.string())
     .max(10, { message: "Maximum of 10 skills" })
     .optional(),
+
 });
 
 type Props = {
@@ -85,7 +96,7 @@ type Props = {
   names: any | undefined;
 };
 
-const AboutForm = ({ portfolio, names }: Props) => {
+const AboutForm = ({ portfolio,names }: Props) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -100,6 +111,9 @@ const AboutForm = ({ portfolio, names }: Props) => {
       imageUrl: portfolio?.imageUrl || "",
       country: portfolio?.country || "",
       skills: portfolio?.skills || [],
+
+      
+
     },
   });
   const isLoading = form.formState.isSubmitting;
@@ -130,15 +144,6 @@ const AboutForm = ({ portfolio, names }: Props) => {
     }
   }
 
-  // let noChanges =
-  //   portfolio?.name === form.getValues("name") &&
-  //   (portfolio?.title || "") === form.getValues("title") &&
-  //   (portfolio?.bio || "") === form.getValues("bio") &&
-  //   (portfolio?.imageUrl || "") === form.getValues("imageUrl") &&
-  //   (portfolio?.country || "") === form.getValues("country") &&
-  //   portfolio?.skills.join() === form.getValues("skills")?.join();
-
-  // Task: refactor noCHanges
 
   const { onOpen } = useModal();
 
@@ -162,8 +167,9 @@ const AboutForm = ({ portfolio, names }: Props) => {
     return () => document.removeEventListener("keydown", handleEvent);
   }, [handleButtonClick]);
   const skillRef = useRef<HTMLInputElement | null>(null);
+
   return (
-    <div className="mt-10 flex-1  ">
+    <div className="mt-10   ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -211,6 +217,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                   <FormItem className="col-span-1 flex-shrink-0">
                     <FormLabel>Country</FormLabel>
                     <Select
+                    
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
@@ -365,7 +372,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 control={form.control}
                 name="skills"
                 render={({ field }) => (
-                  <FormItem className="sm:col-span-2 col-span-1 flex-shrink-0">
+                  <FormItem className=" col-span-1 sm:col-span-2 flex-shrink-0">
                     <FormLabel>
                       Skills {`${form.getValues("skills")?.length}/10`}
                     </FormLabel>
@@ -411,6 +418,8 @@ const AboutForm = ({ portfolio, names }: Props) => {
                   </FormItem>
                 )}
               />
+
+
             </div>
           
           <div className="flex items-center gap-x-4">
