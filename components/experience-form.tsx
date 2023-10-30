@@ -130,7 +130,7 @@ const ExperienceForm = ({ experience }: Props) => {
 
 const avhievmentRef = useRef<HTMLInputElement | null>(null)
 const handleButtonClick = useCallback(() => {
-  if (!avhievmentRef.current?.value || form.getValues('achievments')?.length! >=5 ) return;
+  if (!avhievmentRef.current?.value.trim() || form.getValues('achievments')?.length! >=5 ) return;
   const myArray = form.getValues("achievments");
   form.setValue("achievments", [...myArray!, avhievmentRef.current?.value]);
   avhievmentRef.current.value = "";
@@ -222,7 +222,7 @@ const metricCheck = (bullet:string)=>{
                         
                         return  <span
                           key={uuidv4()}
-                          className={cn("px-3 py-2 border bg-black text-white  rounded-md text-xs  gap-x-3    ",!metricCheck(value) && 'bg-amber-200 border-amber-500 text-black ' )}
+                          className={cn("px-3 py-2 border  text-gray-700 font-semibold capitalize  rounded-md text-xs  gap-x-3    ",!metricCheck(value) && 'bg-amber-200 text-gray-700 border-amber-500  ' )}
                         >
                           <span className="capitalize w-full justify-between flex"> <p className={cn("flex-1 text-ellipsis overflow-hidden")}>&bull; {value}</p>
                          

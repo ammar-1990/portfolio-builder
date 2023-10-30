@@ -155,7 +155,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
   const { onOpen } = useModal();
 
   const addLanguage = () => {
-    if (!languageRef.current?.value) return;
+    if (!languageRef.current?.value.trim() || form.getValues('languages')?.length! >=6) return;
     const languages = form.getValues("languages");
     form.setValue("languages", [
       ...languages!,
@@ -168,7 +168,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
   };
 
   const handleButtonClick = useCallback(() => {
-    if (!skillRef.current?.value || form.getValues("skills")?.length! >= 10)
+    if (!skillRef.current?.value.trim() || form.getValues("skills")?.length! >= 10)
       return;
     const myArray = form.getValues("skills");
     form.setValue("skills", [...myArray!, skillRef.current?.value]);
@@ -377,7 +377,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
 
                     <FormMessage />
                   </FormItem>
-                  <Button type="button" onClick={addLanguage}>
+                  <Button disabled={field.value?.length! >=6} type="button" onClick={addLanguage}>
                     Add
                   </Button>
                   <div className="flex items-center flex-wrap gap-3">
@@ -391,6 +391,11 @@ const AboutForm = ({ portfolio, names }: Props) => {
                       </div>
                     ))}
                   </div>
+                  {field.value?.length! >= 6 && (
+                    <p className="py-1 text-sm text-rose-500">
+                      You&apos;ve reached the maximum of 6 languages!
+                    </p>
+                  )}
                 </div>
               )}
             />
