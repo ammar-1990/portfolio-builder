@@ -14,7 +14,7 @@ export async function PATCH(req:Request,{params}:{params:{profileId:string,portf
         const portfolioId = params.portfolioId
         if(!portfolioId) return new NextResponse('portfolio Id is required',{status:401})
 
-        const {name, title, bio, country, imageUrl, skills,tel,email,facebook,instagram,linkedin,theme,published} = await req.json()
+        const {name, title, bio, country, imageUrl, skills,tel,email,facebook,instagram,linkedin,theme,published,languages} = await req.json()
 
 
         if(theme){
@@ -35,7 +35,7 @@ published
 
         if(!name) return new NextResponse('name is required',{status:400})
 
-        const portfolio = await db.portfolio.update({
+        await db.portfolio.update({
             where:{
                 id:params.portfolioId,
                 profileId:currentProfile.id
@@ -51,10 +51,31 @@ published
                 email,
                 facebook,
                 linkedin,
-                instagram
+                instagram,
+                languages:{
+                    deleteMany:{}
+                }
                 
             }
         })
+   const portfolio = !!languages.length ?  await db.portfolio.update({
+    where:{
+        id:params.portfolioId,
+                profileId:currentProfile.id
+    },
+    data:{
+        languages:{
+            createMany:{
+                data:[...languages.map((language:any)=>({language:language.language,level:language.level}))]
+            }
+        }
+    }
+   }): await db.portfolio.findFirst({
+    where:{
+        id:params.portfolioId,
+        profileId:currentProfile.id
+    }
+   })
 
 return NextResponse.json(portfolio)
 

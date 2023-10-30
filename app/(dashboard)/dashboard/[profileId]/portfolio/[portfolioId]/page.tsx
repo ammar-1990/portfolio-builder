@@ -13,7 +13,9 @@ const page = async({params}: Props) => {
     where:{
       id:params.portfolioId
     },
-  
+  include:{
+    languages:true
+  }
   
   })
 
