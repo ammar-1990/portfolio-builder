@@ -128,9 +128,9 @@ const ExperienceForm = ({ experience }: Props) => {
 
   const avhievmentRef = useRef<HTMLInputElement | null>(null);
   const handleButtonClick = useCallback(() => {
-    console.log(edit)
+  
     if (edit) {
-      console.log('edit')
+    
       if (avhievmentRef.current?.value.trim()) {
       const newData =  form
           .getValues("achievments")
