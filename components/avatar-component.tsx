@@ -36,8 +36,8 @@ const AvatarComponent = ({ currentProfile }: Props) => {
        
           <DropdownMenuItem
             onClick={async() => {
-             await signOut({callbackUrl: "/" });
-              router.refresh();
+              const data = await signOut({redirect: false, callbackUrl: "/"})
+              router.push(data.url)
             }}
             className="cursor-pointer"
           >
