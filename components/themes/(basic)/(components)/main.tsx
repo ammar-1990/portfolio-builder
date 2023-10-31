@@ -9,10 +9,11 @@ type Props = {
     title:string | null,
     bio:string | null ,
     skills:string[],
-    preview?:boolean
+    preview?:boolean,
+    noLink?:boolean
 }
 
-const MainBasic = ({title,bio,skills,preview}: Props) => {
+const MainBasic = ({title,bio,skills,preview,noLink}: Props) => {
 
 
     const container = {

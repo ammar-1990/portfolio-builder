@@ -17,7 +17,7 @@ const LoginTab = ({title,provider,img}: Props) => {
 
 const router = useRouter()
     const handleLogin =async ()=>{
-        await  signIn(provider,{redirect:false,callbackUrl:'/'})
+        await  signIn(provider,{redirect:false,callbackUrl:'/dashboard'})
         router.refresh()
       
       }

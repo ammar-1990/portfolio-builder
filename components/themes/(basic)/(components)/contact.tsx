@@ -5,12 +5,14 @@ import React from "react";
 
 type Props = {
   portfolio: Portfolio;
+  noLink?:boolean
 };
 
-const ContactBasic = ({ portfolio }: Props) => {
+const ContactBasic = ({ portfolio,noLink }: Props) => {
   return (
     <div className="min-h-[100px]  mt-52 relative   z-10 bg-black/90  ">
       <Link
+      onClick={(e)=> noLink && e.preventDefault()}
         href={"#contact"}
         className="md:text-2xl font-bold block text-center p-1 pt-5 text-white text-xl"
       >

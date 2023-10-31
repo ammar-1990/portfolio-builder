@@ -12,12 +12,13 @@ type Props = {
   image: string | null;
   experience: boolean;
   projects: boolean;
+  noLink?:boolean
  
 
   
 };
 
-const MainColorful = ({ title, bio, skills, preview ,experience,projects,image}: Props) => {
+const MainColorful = ({ title, bio, skills, preview ,experience,projects,image,noLink}: Props) => {
   return (
     <div className={cn(" h-screen bg-rose-500 sticky top-0 ")}>
            <HeaderColorful
@@ -26,6 +27,7 @@ const MainColorful = ({ title, bio, skills, preview ,experience,projects,image}:
         title={title}
         preview={preview}
         image={image}
+        noLink={noLink}
       />
       <div className="container flex items-center h-full">
         <div className="text-white">

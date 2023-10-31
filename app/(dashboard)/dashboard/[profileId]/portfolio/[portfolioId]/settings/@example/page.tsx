@@ -4,6 +4,7 @@ import React from 'react'
 import { redirect } from 'next/navigation'
 import BasicTheme from '@/components/themes/(basic)/basic'
 import MoveTheme from '@/components/themes/(colorful)/colorful'
+import PreviewInstance from './preview-instanse'
 
 type Props = {
     params:{portfolioId:string}
@@ -27,13 +28,10 @@ const ExamplePage =async ({params}: Props) => {
 
     if(!portfolio) return <div>error</div>
 
-    const preview : { [key: string]: JSX.Element } = {
-        basic:<BasicTheme preview={true} portfolio={portfolio} />,
-        colorful:<MoveTheme preview={true} portfolio={portfolio} />
-    }
+  
  
   return (
-  preview[portfolio.theme ]
+ <PreviewInstance portfolio={portfolio} />
   )
 }
 

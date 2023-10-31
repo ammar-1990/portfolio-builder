@@ -24,9 +24,10 @@ type Props = {
    
   };
   preview?: boolean;
+  noLink?:boolean
 };
 
-const BasicTheme = ({ portfolio, preview }: Props) => {
+const BasicTheme = ({ portfolio, preview,noLink }: Props) => {
   return (
     <main className="bg-white w-full ">
       <HeaderBasic
@@ -35,6 +36,7 @@ const BasicTheme = ({ portfolio, preview }: Props) => {
         experience={!!portfolio.experiences.length}
         projects={!!portfolio.projects.length}
         title={portfolio.title}
+        noLink={noLink}
       />
 
       <div className="h-screen" id="home" />
@@ -44,14 +46,15 @@ const BasicTheme = ({ portfolio, preview }: Props) => {
         title={portfolio.title}
         bio={portfolio.bio}
         skills={portfolio.skills}
+        noLink={noLink}
       />
       <div className="h-[500px]" />
 
       <section className="" id="projects">
-        <ProjectsBasic preview={preview} projects={portfolio.projects} />
+        <ProjectsBasic preview={preview} projects={portfolio.projects} noLink={noLink} />
         <div className="h-[500px]"></div>
         <div className="" id="experience"></div>
-        <ExperienceBasic preview={preview} experiences={portfolio.experiences} />
+        <ExperienceBasic preview={preview} experiences={portfolio.experiences}  noLink={noLink} />
         <div className="h-[500px]" id="contact"></div>
         <ContactBasic portfolio={portfolio} />
       </section>

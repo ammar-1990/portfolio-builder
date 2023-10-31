@@ -9,17 +9,18 @@ type Props = {
     experience:boolean,
     projects:boolean,
     title:string | null,
-    preview?:boolean
+    preview?:boolean,
+    noLink?:boolean
 }
 
-const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
+const HeaderBasic = ({image,projects,experience,title,preview,noLink}: Props) => {
   return (
     <header className={cn(" sm:h-16 h-24 fixed top-0 w-full bg-black z-50 ",preview && 'sticky')}>
         <div className="my-container flex items-center justify-center gap-y-2  sm:justify-between w-full h-full flex-col sm:flex-row ">
           {!!image ? (
             <Link
             scroll
-            href={preview ? '' :"#home"}>
+            href={noLink ? '' :"#home"}>
               <div className="w-12 h-12 relative  rounded-full overflow-hidden ">
                 <Image
                   fill
@@ -32,7 +33,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
           ) : (
             <Link 
             scroll
-            href={preview ? '' : "#home"}>
+            href={noLink ? '' : "#home"}>
               <span className="font-bold text-white text-md  md:text-xl">
                 {title}
               </span>
@@ -43,7 +44,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
             <Link
             scroll
             onClick={(e)=>{
-              preview && e.preventDefault()
+              noLink && e.preventDefault()
             }} 
               className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
               href={"#home"}
@@ -53,7 +54,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
             {projects && (
               <Link
               onClick={(e)=>{
-                preview && e.preventDefault()
+                noLink && e.preventDefault()
               }} 
               scroll
                 className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
@@ -65,7 +66,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
             {experience && (
               <Link 
               onClick={(e)=>{
-                preview && e.preventDefault()
+                noLink && e.preventDefault()
               }} 
               scroll
                 className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}
@@ -76,7 +77,7 @@ const HeaderBasic = ({image,projects,experience,title,preview}: Props) => {
             )}
                 <Link 
                   onClick={(e)=>{
-                    preview && e.preventDefault()
+                    noLink && e.preventDefault()
                   }} 
               scroll
                 className={cn(" font-semibold transition p-1 text-xs sm:text-md md:text-base",preview && 'text-xs sm:text-xs md:text-xs')}

@@ -19,10 +19,11 @@ import { cn } from "@/lib/utils";
 type ProjectWithImages = Project & { images: PImage[] };
 type Props = {
   projects: ProjectWithImages[];
-  preview?:boolean
+  preview?:boolean,
+  noLink?:boolean
 };
 
-const ProjectsBasic = ({ projects,preview }: Props) => {
+const ProjectsBasic = ({ projects,preview,noLink }: Props) => {
   const {onOpen} = useModal()
   return (
     <section className={cn("h-screen my-container sticky top-[95px] sm:top-[66px]  ",!projects.length && 'hidden')}>
@@ -30,7 +31,7 @@ const ProjectsBasic = ({ projects,preview }: Props) => {
         href={"#projects"}
         className="text-4xl font-bold block text-center p-1 "
         onClick={(e)=>{
-          preview && e.preventDefault()
+          noLink && e.preventDefault()
         }} 
       >
         {" "}

@@ -51,59 +51,58 @@ const formSchema = z.object({
   title: z.string().min(1, {
     message: "Title is required.",
   }),
-  achievments : z
-  .array(z.string())
-  .max(5, { message: "Maximum of 10 skills" })
-  .optional(),
+  achievments: z
+    .array(z.string())
+    .max(5, { message: "Maximum of 10 skills" })
+    .optional(),
 
   description: z.string().optional(),
-startDate:z.date().optional(),
-endDate:z.date().optional()
-
+  startDate: z.date().optional(),
+  endDate: z.date().optional(),
 });
 
 type Props = {
   experience: Experience | null;
-
-
 };
 
 const ExperienceForm = ({ experience }: Props) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title:experience?.title || '',
-      achievments:experience?.achievments || [],
+      title: experience?.title || "",
+      achievments: experience?.achievments || [],
       place: experience?.place || "",
       description: experience?.description || "",
       startDate: experience?.startDate || undefined,
       endDate: experience?.startDate || undefined,
-    
     },
   });
   const isLoading = form.formState.isSubmitting;
 
   const params = useParams();
   const router = useRouter();
- 
+
+  const [edit, setEdit] = useState("");
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-
-        experience?  await axios.patch(
+      experience
+        ? await axios.patch(
             `/api/${params.profileId}/${params.portfolioId}/experience/${experience.id}`,
             values
-          ):
-      await axios.post(
-        `/api/${params.profileId}/${params.portfolioId}/experience`,
-        values
+          )
+        : await axios.post(
+            `/api/${params.profileId}/${params.portfolioId}/experience`,
+            values
+          );
+      router.push(
+        `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`
       );
-      router.push(`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`)
       router.refresh();
       toast({
         variant: "default",
         title: "Experience",
-        description:experience?  "Changes saved" : " Experience added",
+        description: experience ? "Changes saved" : " Experience added",
       });
     } catch (error) {
       console.log(error);
@@ -127,36 +126,57 @@ const ExperienceForm = ({ experience }: Props) => {
 
   const { onOpen } = useModal();
 
+  const avhievmentRef = useRef<HTMLInputElement | null>(null);
+  const handleButtonClick = useCallback(() => {
+    console.log(edit)
+    if (edit) {
+      console.log('edit')
+      if (avhievmentRef.current?.value.trim()) {
+      const newData =  form
+          .getValues("achievments")
+          ?.map((el) => (el === edit ? avhievmentRef.current?.value : el));
 
-const avhievmentRef = useRef<HTMLInputElement | null>(null)
-const handleButtonClick = useCallback(() => {
-  if (!avhievmentRef.current?.value.trim() || form.getValues('achievments')?.length! >=5 ) return;
-  const myArray = form.getValues("achievments");
-  form.setValue("achievments", [...myArray!, avhievmentRef.current?.value]);
-  avhievmentRef.current.value = "";
-}, [form]);
+          form.setValue('achievments',newData as string[])
+        avhievmentRef.current.value = "";
+        setEdit("");
+      }
+    }else{
 
-useEffect(() => {
-  const handleEvent = (e: KeyboardEvent) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleButtonClick();
+      if (
+        !avhievmentRef.current?.value.trim() ||
+        form.getValues("achievments")?.length! >= 5
+      )
+        return;
+      const myArray = form.getValues("achievments");
+      form.setValue("achievments", [...myArray!, avhievmentRef.current?.value]);
+      avhievmentRef.current.value = "";
     }
+
+  }, [form,edit]);
+
+  useEffect(() => {
+    const handleEvent = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleButtonClick();
+      }
+    };
+
+    document.addEventListener("keydown", handleEvent);
+
+    return () => document.removeEventListener("keydown", handleEvent);
+  }, [handleButtonClick]);
+
+  const metricRegex = /\d|%/;
+
+  const metricCheck = (bullet: string) => {
+    return !!/\d|%/.test(bullet);
   };
 
-  document.addEventListener("keydown", handleEvent);
 
-  return () => document.removeEventListener("keydown", handleEvent);
-}, [handleButtonClick]);
-
-
-const metricRegex = /\d|%/
-
-const metricCheck = (bullet:string)=>{
-
-  return !!/\d|%/.test(bullet)
-
-}
+  useEffect(()=>{
+    avhievmentRef.current!.value = edit;
+  },[edit])
 
   return (
     <div className="mt-10 flex-1  ">
@@ -167,7 +187,7 @@ const metricCheck = (bullet:string)=>{
         >
           <div className="">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-3">
-            <FormField
+              <FormField
                 control={form.control}
                 name="title"
                 render={({ field }) => (
@@ -195,7 +215,7 @@ const metricCheck = (bullet:string)=>{
                   </FormItem>
                 )}
               />
-               <FormField
+              <FormField
                 control={form.control}
                 name="achievments"
                 render={({ field }) => (
@@ -203,49 +223,83 @@ const metricCheck = (bullet:string)=>{
                     <FormLabel>Achievments</FormLabel>
                     <div className="flex items-center gap-x-2">
                       <FormControl>
-                        <Input ref={avhievmentRef} placeholder="Programming.." />
+                        <Input
+                          ref={avhievmentRef}
+                          placeholder="Programming.."
+                        />
                       </FormControl>
                       <Button
                         type="button"
                         onClick={handleButtonClick}
-                        disabled={field.value?.length! >= 5}
+                        disabled={field.value?.length! >= 5 && !edit}
                       >
-                        Add
+                        {edit ? "Save " : "Add"}
                       </Button>
                     </div>
                     <FormDescription className="text-xs">
-                      You can add up do 5 bullet points to tell about your achievments.
+                      You can add up do 5 bullet points to tell about your
+                      achievments.
                     </FormDescription>
                     <div className=" flex flex-col gap-1  w-full">
-                      {field.value?.map((value) => 
-                        {
-                        
-                        return  <span
-                          key={uuidv4()}
-                          className={cn("px-3 py-2 border  text-gray-700 font-semibold capitalize  rounded-md text-xs  gap-x-3    ",!metricCheck(value) && 'bg-amber-200 text-gray-700 border-amber-500  ' )}
-                        >
-                          <span className="capitalize w-full justify-between flex"> <p className={cn("flex-1 text-ellipsis overflow-hidden")}>&bull; {value}</p>
-                         
-                         <XIcon
-                           className="w-4 h-4 cursor-pointer "
-                           onClick={() => {
-                             field.onChange([
-                               ...field.value?.filter(
-                                 (item) => item !== value
-                               )!,
-                             ]);
-                           }}
-                         /></span>
-                         
-                           {!metricCheck(value)&& <p className="p-1 text-xs  font-bold text-amber-600">It is recommended to add metrics and measurments to your bullet points</p>}
-                        </span>
-                       
-                        }
-                      )}
+                      {field.value?.map((value) => {
+                        return (
+                          <span
+                            key={uuidv4()}
+                            className={cn(
+                              "px-3 py-2 border  text-gray-700 font-semibold capitalize  rounded-md text-xs  gap-x-3  relative  space-y-4",
+                              !metricCheck(value) &&
+                                "bg-amber-200 text-gray-700 border-amber-500  ",edit === value && 'ring-1'
+                            )}
+                          >
+                            <span className="capitalize w-full justify-between flex items-start ">
+                              {" "}
+                              <p
+                                className={cn(
+                                  "flex-1 text-ellipsis overflow-hidden"
+                                )}
+                              >
+                                &bull; {value}
+                              </p>
+                             
+                              <XIcon
+                                className="w-4 h-4 cursor-pointer absolute top-[2px] right-[2px]"
+                                onClick={() => {
+                                  field.onChange([
+                                    ...field.value?.filter(
+                                      (item) => item !== value
+                                    )!,
+                                  ]);
+                                  setEdit("");
+                                }}
+                              />
+                            </span>
+
+                            {!metricCheck(value) && (
+                              <p className="p-1 text-[9px]  font-bold text-amber-600">
+                                It is recommended to add metrics and measurments
+                                to your bullet points
+                              </p>
+                            )}
+                             <Button
+                                type="button"
+                                variant={"secondary"}
+                                size={"sm"}
+                                className="w-full"
+                                onClick={() => {
+                                  setEdit(()=>value);
+                                
+                                  avhievmentRef.current?.focus();
+                                }}
+                              >
+                                Edit
+                              </Button>
+                          </span>
+                        );
+                      })}
                     </div>
                     {field.value?.length! >= 5 && (
                       <p className="py-1 text-sm text-rose-500">
-                       You&apos;ve reached the maximum of 5 achievments!
+                        You&apos;ve reached the maximum of 5 achievments!
                       </p>
                     )}
 
@@ -260,9 +314,9 @@ const metricCheck = (bullet:string)=>{
                   <FormItem className="sm:col-span-2">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                    <Textarea
+                      <Textarea
                         placeholder="Describe your experience..."
-                        className="resize-none flex-1"
+                        className="resize-none flex-1  myScroll min-h-[150px]"
                         {...field}
                       />
                     </FormControl>
@@ -272,110 +326,109 @@ const metricCheck = (bullet:string)=>{
                 )}
               />
 
-<FormField
-          control={form.control}
-          name="startDate"
-          render={({ field }) => (
-            <FormItem className="flex flex-col sm:col-span-2">
-              <FormLabel>Start date</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        " pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Start date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
+              <FormField
+                control={form.control}
+                name="startDate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col sm:col-span-2">
+                    <FormLabel>Start date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              " pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Start date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={(date) =>
+                            date > new Date() || date < new Date("1900-01-01")
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
 
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
-                 
-                  />
-                </PopoverContent>
-              </Popover>
-           
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-             
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-             <FormField
-          control={form.control}
-          name="endDate"
-          render={({ field }) => (
-            <FormItem className="flex flex-col sm:col-span-2">
-              <FormLabel>End date</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                         "pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>End date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01") || date < form.getValues('startDate')!
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-           
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-            
-           
+              <FormField
+                control={form.control}
+                name="endDate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col sm:col-span-2">
+                    <FormLabel>End date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              "pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>End date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={(date) =>
+                            date > new Date() ||
+                            date < new Date("1900-01-01") ||
+                            date < form.getValues("startDate")!
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
           </div>
           <div className="flex items-center gap-x-4">
             {" "}
             <Button disabled={isLoading} type="submit">
-              {experience ? 'Save changes' : 'Add experience'}
+              {experience ? "Save changes" : "Add experience"}
               {isLoading && <Loader className="w-4 h-4 ml-2 animate-spin" />}
             </Button>
             <Button
-              onClick={()=>{  onOpen("alert-modal", {
-                url: `/api/${params.profileId}/${params.portfolioId}/experience/${experience?.id}`,
-                back: `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
-                message:'Experience'
-              });}}
+              onClick={() => {
+                onOpen("alert-modal", {
+                  url: `/api/${params.profileId}/${params.portfolioId}/experience/${experience?.id}`,
+                  back: `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
+                  message: "Experience",
+                });
+              }}
               type="button"
               variant={"destructive"}
             >

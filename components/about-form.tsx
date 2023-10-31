@@ -202,7 +202,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-4 flex flex-col h-full justify-between p-1"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2  gap-6 sm:gap-10">
             <FormField
               control={form.control}
               name="name"
@@ -419,7 +419,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
               control={form.control}
               name="bio"
               render={({ field }) => (
-                <FormItem className="sm:col-span-2 flex flex-col gap-1 flex-shrink-0 col-span-1">
+                <FormItem className=" flex flex-col gap-1 flex-shrink-0 col-span-1">
                   <FormLabel>Bio*</FormLabel>
                   <FormControl>
                     <Textarea
@@ -462,7 +462,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
               control={form.control}
               name="skills"
               render={({ field }) => (
-                <FormItem className=" col-span-1 sm:col-span-2 flex-shrink-0">
+                <FormItem className=" col-span-1  flex-shrink-0">
                   <FormLabel>
                     Skills {`${form.getValues("skills")?.length}/10`}
                   </FormLabel>

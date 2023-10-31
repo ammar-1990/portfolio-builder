@@ -22,13 +22,14 @@ type Props = {
     experiences: Experience[];
   };
   preview?: boolean;
+  noLink?:boolean
 };
 
 const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const ColorfulTheme = ({ portfolio, preview }: Props) => {
+const ColorfulTheme = ({ portfolio, preview,noLink }: Props) => {
   return (
     <div className={cn(montserrat.className,'noScroll overflow-y-auto h-screen scroll-smooth')}>
   
@@ -40,6 +41,7 @@ const ColorfulTheme = ({ portfolio, preview }: Props) => {
         skills={portfolio.skills}
         experience={!!portfolio?.experiences?.length}
         projects={!!portfolio?.projects?.length}
+        noLink={noLink}
       
 
         image={portfolio.imageUrl}
