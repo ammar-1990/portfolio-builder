@@ -13,7 +13,8 @@ const ResumePage = async ({ params }: Props) => {
     include: {
       profile: true,
       experiences: true,
-      projects:true
+      projects:true,
+      languages:true
     },
   });
 

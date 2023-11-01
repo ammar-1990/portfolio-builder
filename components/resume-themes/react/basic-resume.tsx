@@ -1,11 +1,11 @@
 
 'use client'
 import {Inter} from 'next/font/google'
-import { Experience, Portfolio, Profile, Project } from "@prisma/client";
+import { Experience, Language, Portfolio, Profile, Project } from "@prisma/client";
 import { cn } from '@/lib/utils';
 
 type props = {
-    portfolio:Portfolio & {experiences:Experience[],projects:Project[],profile:Profile}
+    portfolio:Portfolio & {experiences:Experience[],projects:Project[],profile:Profile,languages:Language[]}
 }
 
 
@@ -42,11 +42,22 @@ const ResumeBasic = ({ portfolio }:props) => (
       </div>
       <div>
         <h2 className="font-bold text-[1vw] mt-[1vw] border-b pb-1 uppercase">Skills</h2>
-        <div className="flex-row flex-wrap gap-[0.3vw] flex">
+        <div className="flex-row flex-wrap gap-[0.3vw] flex mt-[0.4vw]">
           {portfolio.skills.map((skill, i) => (
-            <p key={skill} className="text-[0.8vw] mt-[1vw] text-gray-500">
+            <p key={skill} className="text-[0.8vw]  text-gray-500">
               {i !== 0 && " - "}
               {skill}
+            </p>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h2 className="font-bold text-[1vw] mt-[1vw] border-b pb-1 uppercase">Languages</h2>
+        <div className="flex-row flex-wrap gap-[0.3vw] flex mt-[0.4vw]">
+          {portfolio.languages.map((language, i) => (
+            <p key={language.id} className="text-[0.8vw]  text-gray-500  capitalize">
+                {i !== 0 && " - "}
+             {`${language.language}: ${language.level}`}
             </p>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import { Experience, Portfolio, Profile, Project } from "@prisma/client";
+import { Experience, Language, Portfolio, Profile, Project } from "@prisma/client";
 import {
   Document,
   Page,
@@ -15,6 +15,7 @@ type props = {
     experiences: Experience[];
     projects: Project[];
     profile: Profile;
+    languages:Language[]
   };
 };
 
@@ -209,6 +210,59 @@ const BasicPDF = ({ portfolio }: props) => (
               {i !== 0 && " - "}
               {skill}
             </Text>
+          ))}
+        </View>
+      </View>
+      <View>
+        <Text
+          style={{
+            fontWeight: "heavy",
+            fontSize: "15px",
+            marginTop: "25px",
+            borderBottom: "1px black solid",
+            paddingBottom: "1px",
+            textTransform: "uppercase",
+            fontFamily: "Times-Roman",
+          }}
+        >
+          languages
+        </Text>
+        <View style={{ flexDirection: "row", gap: "5px" }}>
+          {portfolio.languages.map((language, i) => (
+            <View      key={language.id} style={{flexDirection:'row',gap:'1px',alignItems:'center'}}>
+              {i !== 0 && <Text style={{
+                fontSize: "10px",
+                marginTop: "2px",
+                color: "#555555",
+                fontFamily: "Times-Roman",
+                textTransform:'capitalize'
+              }} >- </Text>}
+                <Text
+         
+              style={{
+                fontSize: "10px",
+                marginTop: "2px",
+                color: "#555555",
+                fontFamily: "Times-Roman",
+                textTransform:'capitalize'
+              }}
+            >
+          {language.language}:
+            </Text>
+                <Text
+         
+              style={{
+                fontSize: "10px",
+                marginTop: "2px",
+                color: "#555555",
+                fontFamily: "Times-Roman",
+                textTransform:'capitalize'
+              }}
+            >
+        {" "}{language.level}
+            </Text>
+            </View>
+          
           ))}
         </View>
       </View>

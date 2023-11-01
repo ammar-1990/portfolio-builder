@@ -1,6 +1,6 @@
 "use client";
 
-import { Experience, Image, Portfolio, Profile, Project } from "@prisma/client";
+import { Experience, Image, Language, Portfolio, Profile, Project } from "@prisma/client";
 import BasicPDF from "./resume-themes/pdf-vew/basic-pdf";
 import {
   Document,
@@ -25,6 +25,7 @@ type Props = {
     profile: Profile;
     experiences: Experience[];
     projects: Project[];
+    languages:Language[]
   };
 };
 Font.register({
