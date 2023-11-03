@@ -23,8 +23,8 @@ const experinces = await db.experience.findMany({
     <div className='h-full flex flex-col flex-1'>
       <h2 className='text-3xl font-bold'>Edit your experiences</h2>
       {!experinces.length &&<EmptyComponent title='No experiences found' />}
-      <div className=' mt-10 p-3'>
-      <div className='  grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3 p-4 overflow-y-auto  '>
+      <div className=' mt-10 py-6'>
+      <div className='  grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3  overflow-y-auto  '>
         {experinces.map((experience)=><ExperienceComponent key={experience.id} experience={experience} />)}
 
       </div>

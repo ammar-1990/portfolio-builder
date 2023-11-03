@@ -24,8 +24,8 @@ const projects = await db.project.findMany({
     <div className='h-full flex flex-col flex-1'>
       <h2 className='text-3xl font-bold'>Edit your projects</h2>
       {!projects.length &&<EmptyComponent title='No projects found' />}
-      <div className=' mt-10 p-3'>
-      <div className='  grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3  p-4 overflow-y-auto  '>
+      <div className=' mt-10 py-6'>
+      <div className='  grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3   overflow-y-auto  '>
         {projects.map((project)=><ProjectComponent  project={project} key={project.id} /> )}
 
       </div>
