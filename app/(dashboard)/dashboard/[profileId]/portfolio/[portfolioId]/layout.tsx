@@ -19,14 +19,14 @@ where:{
 
   if(!portfolios.length) return redirect('/')
   return (
-    <div className=' h-full  flex flex-col'>
+    <div className=' '>
       <MainNav />
-      <div className='flex flex-1 '>
-        <div className='w-[300px] p-4 items-center lg:flex hidden'>
+    
+        <div className='w-[300px] fixed left-4 top-[50%] -translate-y-[50%] p-4 items-center lg:flex hidden'>
         <SideBar portfolios = {portfolios} />
         </div>
        
-       <main className='flex-1 h-[650px] p-2 md:p-4 py-8 md:py-8 overflow-y-auto   myScroll '>
+       <main className='flex-1 p-6 md:p-8   lg:pl-[320px] mt-32 md:mt-32 2xl:max-w-[1300px]   mx-auto w-full  '>
      
         {children}
        
@@ -34,7 +34,7 @@ where:{
    
       </div>
    
-      </div>
+    
   )
 }
 

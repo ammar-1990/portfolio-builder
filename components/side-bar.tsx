@@ -20,7 +20,7 @@ const SideBar = ({ portfolios }: Props) => {
   const params = useParams();
   const router = useRouter();
   return (
-    <div className="h-[450px] bg-gray-1 rounded-2xl border w-full p-3 flex flex-col ">
+    <div className="h-[450px] bg-gray-1 rounded-2xl border w-full p-3 flex flex-col  ">
       <h2 className="text-lg font-semibold text-center">My Portfolios</h2>
 
       <ScrollArea className="h-[300px] border-0 w-full mt-3 rounded-md   p-4">

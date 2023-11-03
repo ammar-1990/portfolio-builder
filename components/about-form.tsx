@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { v4 as uuidv4 } from "uuid";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import {
   Form,
   FormControl,
@@ -41,7 +43,7 @@ import { Loader, XIcon } from "lucide-react";
 import Image from "next/image";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
-const phoneRegex = new RegExp(/^\+\d{1,3}\d{10}$/);
+const phoneRegex = new RegExp(/^(\d{1,3})\d{10}$/);
 
 const facebookRegex = /^https?:\/\/(?:www\.)?facebook\.com\/[a-zA-Z0-9.-]+\/?$/;
 const linkedinRegex = /^https:\/\/www\.linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
@@ -210,7 +212,7 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 <FormItem className="col-span-1 flex-shrink-0">
                   <FormLabel>Portfolio name*</FormLabel>
                   <FormControl>
-                    <Input placeholder="Photography" {...field} />
+                    <Input placeholder="Photography"  {...field} />
                   </FormControl>
                   <FormDescription className="text-xs ">
                     Give your portfolio a name, example: Management...
@@ -289,7 +291,21 @@ const AboutForm = ({ portfolio, names }: Props) => {
                 <FormItem className="col-span-1 flex-shrink-0">
                   <FormLabel>Mobile number*</FormLabel>
                   <FormControl>
-                    <Input placeholder="+1xxxxxxxxxx" {...field} />
+                  <PhoneInput 
+               enableSearch={true}
+               containerStyle={{width:"100%",border:'0.6px #E5E7EB solid',borderRadius:'6px'}}
+               inputStyle={{width:'100%',border:'none'}}
+             buttonStyle={{backgroundColor:'transparent',borderRight:'none',border:'none'}}
+             searchStyle={{padding:8,borderRadius:'9px',fontSize:15}}
+             dropdownClass="myScroll"
+             disableSearchIcon={true}
+             
+              
+                
+                
+                    value={form.getValues('tel')}
+                    onChange={phone => {console.log(phone);form.setValue('tel',phone)}}
+                  />
                   </FormControl>
 
                   <FormMessage className="text-xs" />

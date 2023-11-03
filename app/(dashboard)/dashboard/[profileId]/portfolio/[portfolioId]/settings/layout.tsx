@@ -17,7 +17,7 @@ export default function SettingsLayout({
   const { preview, setPreivew } = usePreview();
 
   return (
-    <div className="w-full ">
+    <div className="w-full  ">
       <div className="flex gap-x-4 justify-between flex-col md:flex-row  gap-8">
         {children}
         <>
