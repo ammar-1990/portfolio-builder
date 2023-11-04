@@ -38,6 +38,7 @@ const AvatarComponent = ({ currentProfile }: Props) => {
             onClick={async() => {
               const data = await signOut({redirect: false, callbackUrl: "/"})
               router.push(data.url)
+              router.refresh()
             }}
             className="cursor-pointer"
           >
