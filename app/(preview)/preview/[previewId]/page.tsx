@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import BasicTheme from "@/components/themes/(basic)/basic";
 import MoveTheme from "@/components/themes/(colorful)/colorful";
 import { CloudOff } from "lucide-react";
+import KitchenTheme from "@/components/themes/(kitchen)/kitchen";
 
 type Props = {
   params: { previewId: string };
@@ -30,6 +31,7 @@ const PreviewPage = async ({ params }: Props) => {
   const preview: { [key: string]: JSX.Element } = {
     basic: <BasicTheme portfolio={portfolio} />,
     colorful: <MoveTheme portfolio={portfolio} />,
+    kitchen: <KitchenTheme portfolio={portfolio} />,
   };
 
   if (!portfolio.published)

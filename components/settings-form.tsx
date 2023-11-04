@@ -163,6 +163,13 @@ const SettingsForm = ({ portfolio }: Props) => {
                         >
                           colorful
                         </SelectItem>
+                        <SelectItem
+                          className="cursor-pointer capitalize"
+                          key={"kitchen"}
+                          value={"kitchen"}
+                        >
+                          kitchen
+                        </SelectItem>
                       </ScrollArea>
                     </SelectContent>
                   </Select>
