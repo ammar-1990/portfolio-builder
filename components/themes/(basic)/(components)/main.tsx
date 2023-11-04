@@ -40,7 +40,7 @@ const MainBasic = ({title,bio,skills,preview,noLink}: Props) => {
     
 
   return (
-    <motion.section style={{opacity:scrollY}} className={cn("flex items-center justify-center h-screen flex-col  fixed top-0 w-screen left-0",preview && 'absolute w-full')}>
+    <motion.section style={{opacity:scrollY}} className={cn("flex items-center justify-center h-screen flex-col  fixed top-0 w-screen left-0",preview && 'absolute w-full h-full')}>
     <motion.h2
     initial={{x:-50,opacity:0,filter: "blur(20px)"}}
     whileInView={{x:0,opacity:1, filter: "blur(0px)"}}

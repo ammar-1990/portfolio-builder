@@ -18,7 +18,7 @@ export default function SettingsLayout({
 
   return (
     <div className="w-full  ">
-      <div className="flex gap-x-4 justify-between flex-col md:flex-row  gap-8">
+      <div className="flex gap-x-4 justify-between  flex-col-reverse md:flex-row  gap-8">
         {children}
         <>
           <div className="relative w-full min-w-[300px] h-[550px] border rounded-lg 
