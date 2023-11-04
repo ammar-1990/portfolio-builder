@@ -23,7 +23,7 @@ const page = async({params}: Props) => {
 const names = await getAllCountries()
 
   return (
-    <div className=' '>
+    <div className=''>
       <h2 className='text-3xl font-bold'>Edit your portfolio</h2>
       <AboutForm names={names} portfolio={portfolio} />
     </div>

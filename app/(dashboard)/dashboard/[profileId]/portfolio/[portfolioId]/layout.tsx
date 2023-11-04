@@ -19,7 +19,7 @@ where:{
 
   if(!portfolios.length) return redirect('/')
   return (
-    <div className=' '>
+    <div className=''>
       <MainNav />
     
         <div className='w-[300px] fixed left-4 top-[50%] -translate-y-[50%] p-4 items-center lg:flex hidden'>

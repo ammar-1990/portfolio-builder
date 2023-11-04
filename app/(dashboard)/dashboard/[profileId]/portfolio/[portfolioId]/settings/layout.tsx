@@ -21,7 +21,7 @@ export default function SettingsLayout({
       <div className="flex gap-x-4 justify-between flex-col md:flex-row  gap-8">
         {children}
         <>
-          <div className="relative w-full max-w-[450px] min-w-[300px] h-[550px] border rounded-lg 
+          <div className="relative w-full min-w-[300px] h-[550px] border rounded-lg 
            hover:ring-1 ring-black 
           ring-offset-2 transition overflow-hidden   self-center ">
             <div className="w-full h-full overflow-y-scroll relative z-10 noScroll ">
@@ -32,7 +32,7 @@ export default function SettingsLayout({
                 <button
                   type="button"
                   className="rounded-full bg-white
-                    flex items-center justify-center
+                    flex items-center justify-center  flex-1
                      p-0 w-10 h-10 text-gray-700 absolute border hover:scale-110 active:scale-95
                       transition bottom-5 
                      right-5 z-30"
@@ -48,7 +48,7 @@ export default function SettingsLayout({
 
       {show && (
         <>
-          <div className=" absolute top-0 left-0  w-full z-50">{example}</div>{" "}
+          <div className=" absolute top-0 left-0  noScroll w-full z-50"><div className="">{example}</div></div>{" "}
           <Button
             className="fixed right-3 bottom-3 z-50"
             onClick={() => {setShow(false);setPreivew(true)}}
