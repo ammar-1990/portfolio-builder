@@ -13,7 +13,7 @@ const BannerKitchen = ({ image }: Props) => {
         backgroundPosition: "center",
         backgroundAttachment: 'fixed'
       }}
-      className="h-80 md:h-[400px] relative flex items-center"
+      className="h-80 md:h-[400px] relative flex items-center px-3  max-w-[1300px] mx-auto"
     >
      <div className="border-[2px] border-white absolute bottom-3 left-3 flex items-center">
 

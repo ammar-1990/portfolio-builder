@@ -21,7 +21,7 @@ type Props = {
 
 const HeaderKitchen = ({ portfolio }: Props) => {
   return (
-    <header className="flex items-center h-32 justify-between">
+    <header className="flex items-center h-32 justify-between px-3  max-w-[1300px] mx-auto">
 
 
       {portfolio.imageUrl ? (
@@ -37,7 +37,7 @@ const HeaderKitchen = ({ portfolio }: Props) => {
         <p className="text-xl font-bold capitalize">{portfolio.title}</p>
       )}
 
-<nav className="flex items-center gap-[5vw]">
+<nav className="flex items-center gap-[5vw] ">
 {!!portfolio.projects.length &&<Link className="capitalize text-sm font-semibold" href={'#samples'}>Samples</Link>}
 {!!portfolio.experiences.length &&<Link className="capitalize text-sm font-semibold" href={'#projects'}>Experience</Link>}
 </nav>

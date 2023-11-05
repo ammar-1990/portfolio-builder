@@ -18,6 +18,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        kitchen:'py-4 px-8 border border-black rounded-none  uppercase text-xs font-semibold relative after:h-full after:w-0 after:left-1/2 after:absolute after:bg-black after:top-0 after:-translate-x-[50%] after:origin-center after:duration-200 hover:after:w-[110%] overflow-hidden hover:text-white after:z-[0]'
       },
       size: {
         default: "h-10 px-4 py-2",
