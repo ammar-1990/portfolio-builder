@@ -25,7 +25,7 @@ const MainKitchen = ({ portfolio }: Props) => {
 
 
   return (
-    <div id="main" className="mt-12  px-3  max-w-[1300px] mx-auto">
+    <div id="about" className="mt-12  px-3  max-w-[1300px] mx-auto">
       <h2 className="text-center py-20 text-5xl uppercase tracking-wider">about</h2>
       <div
         className="flex flex-col md:flex-row justify-center gap-10   items-center md:h-[550px] h-auto

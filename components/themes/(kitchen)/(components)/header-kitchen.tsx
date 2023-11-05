@@ -39,7 +39,7 @@ const HeaderKitchen = ({ portfolio }: Props) => {
 
 <nav className="flex items-center gap-[5vw] ">
 {!!portfolio.projects.length &&<Link className="capitalize text-sm font-semibold" href={'#samples'}>Samples</Link>}
-{!!portfolio.experiences.length &&<Link className="capitalize text-sm font-semibold" href={'#projects'}>Experience</Link>}
+{!!portfolio.experiences.length &&<Link className="capitalize text-sm font-semibold" href={'#experiences'}>Experience</Link>}
 </nav>
 
 

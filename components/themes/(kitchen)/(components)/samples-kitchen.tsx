@@ -45,8 +45,8 @@ const SamplesKitchen = ({ portfolio }: Props) => {
         }}
         slidesPerView={1.3}
         autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
+          delay: 1500,
+          disableOnInteraction: true,
           pauseOnMouseEnter: true,
         }}
         loop={true}
@@ -58,7 +58,9 @@ const SamplesKitchen = ({ portfolio }: Props) => {
               
                 className="w-full   relative h-[300px] md:h-[550px] group cursor-pointer"
               >
-                <div className="w-full hidden group-hover:block h-full absolute top-0 left-0 bg-black/20 z-10" />
+                <div className="w-full  h-full flex items-center justify-center uppercase font-bold text-3xl text-white absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition bg-black/40 z-10" >
+                    {project.title}
+                </div>
                 <Image
                   src={project.images[0].url}
                   alt="sample"
@@ -102,16 +104,20 @@ const SamplesKitchen = ({ portfolio }: Props) => {
                    invert: false,
                  }}
                  slidesPerView={1}
+                 
                  autoplay={{
-                   delay: 3000,
-                   disableOnInteraction: false,
+                   delay: 1500,
+                   disableOnInteraction: true,
                    pauseOnMouseEnter: true,
                  }}
                  loop={true}
                 >
                   {project.images.map((image) => (
-                    <SwiperSlide key={image.id}>
-                    <div key={image.id} className="w-full aspect-square relative">
+                    <SwiperSlide key={image.id}
+                    className=""
+                    >
+                    <div key={image.id}
+                     className={' aspect-square relative w-full  top-0 left-0 '}>
                       <Image
                         alt="a sample"
                         fill
