@@ -16,6 +16,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 type ProjectWithImages = Project & { images: PImage[] };
 type Props = {
@@ -51,13 +52,13 @@ const SamplesKitchen = ({ portfolio }: Props) => {
         loop={true}
       >
         {portfolio.projects.map((project) => (
-          <SwiperSlide className="">
+          <SwiperSlide key={project.id} className="">
             <Link href={`#${project.id}`}>
               <div
-                key={project.id}
-                className="w-full   relative h-[300px] md:h-[550px] cursor-pointer"
+              
+                className="w-full   relative h-[300px] md:h-[550px] group cursor-pointer"
               >
-                <div className="w-full h-full absolute top-0 left-0 bg-black/20 z-10" />
+                <div className="w-full hidden group-hover:block h-full absolute top-0 left-0 bg-black/20 z-10" />
                 <Image
                   src={project.images[0].url}
                   alt="sample"
@@ -72,7 +73,12 @@ const SamplesKitchen = ({ portfolio }: Props) => {
       <div className="mt-32 px-3  max-w-[1300px] mx-auto space-y-36 md:space-y-10">
         {portfolio.projects.map((project, i) => {
           return (
-            <div
+            <motion.div
+            
+            initial={{opacity:0,filter:'blur(2px)'
+            }}
+            whileInView={{opacity:1,filter:'blur(0)'}}
+            transition={{duration:0.8}}
             id={project.id}
               key={project.id}
               className={cn(
@@ -84,7 +90,7 @@ const SamplesKitchen = ({ portfolio }: Props) => {
                 <h3 className="text-2xl md:text-4xl font-bold uppercase">
                   {project.title}
                 </h3>
-                <p className="text-xs text-gray-500">{project.description}</p>
+                <p className="text-xs text-gray-500 max-h-[200px] noScroll overflow-y-auto">{project.description}</p>
               </div>
               <div className="w-full md:w-1/2 flex-shrink-0">
                 <Swiper
@@ -104,7 +110,7 @@ const SamplesKitchen = ({ portfolio }: Props) => {
                  loop={true}
                 >
                   {project.images.map((image) => (
-                    <SwiperSlide>
+                    <SwiperSlide key={image.id}>
                     <div key={image.id} className="w-full aspect-square relative">
                       <Image
                         alt="a sample"
@@ -117,7 +123,7 @@ const SamplesKitchen = ({ portfolio }: Props) => {
                   ))}
                 </Swiper>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
