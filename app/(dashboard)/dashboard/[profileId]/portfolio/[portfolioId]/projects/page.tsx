@@ -28,11 +28,12 @@ const page = async ({ params }: Props) => {
       {!projects.length && <EmptyComponent title="No projects found" />}
       <div className=" mt-10 py-6">
         <div className="  grid grid-cols-1 gap-4  sm:grid-cols-2 md:grid-cols-3   overflow-y-auto  ">
-          {projects.map((project) => (
+          {projects.map((project,index) => (
             <Suspense key={project.id} fallback={<Skeleton className="w-full h-[300px] rounded-xl" />}>
               <ProjectHolder
                 portfolioId={params.portfolioId}
                 projectId={project.id}
+              
               />
             </Suspense>
           ))}

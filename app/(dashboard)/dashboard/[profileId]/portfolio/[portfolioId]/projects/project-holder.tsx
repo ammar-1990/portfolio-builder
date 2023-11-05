@@ -5,10 +5,13 @@ import React from 'react'
 type Props = {
 
     projectId:string,
-    portfolioId:string
+    portfolioId:string,
+   
 }
 
 const ProjectHolder = async({projectId,portfolioId}: Props) => {
+
+    
 
     const project = await db.project.findUnique({
         where:{

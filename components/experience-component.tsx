@@ -10,7 +10,7 @@ import { Edit, Trash, ZoomInIcon } from "lucide-react";
 import { useModal } from "@/hooks/modal-hook";
 
 type Props = {
-  experience: Experience;
+  experience: Experience | null;
   preview?: boolean;
   readOnly?:boolean
 };
@@ -23,7 +23,7 @@ const ExperienceComponent = ({ experience, preview,readOnly }: Props) => {
   const handleDelete: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     onOpen("alert-modal", {
-      url: `/api/${params.profileId}/${params.portfolioId}/experience/${experience.id}`,
+      url: `/api/${params.profileId}/${params.portfolioId}/experience/${experience!.id}`,
       back: `/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience`,
       message: "Experience",
     });
@@ -34,32 +34,32 @@ const ExperienceComponent = ({ experience, preview,readOnly }: Props) => {
       <div className="absolute inset-0 bg-black/70 text-white flex items-center justify-center transition duration-200 opacity-0 group-hover:opacity-100 z-10 ">
         <span
           className="cursor-pointer flex items-center gap-x-2"
-          onClick={() =>!preview && onOpen('experience-modal',{experience:experience})}
+          onClick={() =>!preview && onOpen('experience-modal',{experience:experience!})}
         >
           Preview <ZoomInIcon className="w-4 h-4" />
         </span>
       </div>
      
       <h2 className="text-xl font-semibold capitalize line-clamp-1">
-        {experience.place}
+        {experience!.place}
       </h2>
       <h2 className=" font-semibold text-neutral-500 text-sm capitalize line-clamp-1">
-        {experience.title}
+        {experience!.title}
       </h2>
       <div className="flex items-center gap-x-3 text-neutral-500 text-xs mt-4">
-        <span>{experience.startDate?.toLocaleDateString()}</span>
-        <span>{experience.endDate?.toLocaleDateString()}</span>
+        <span>{experience!.startDate?.toLocaleDateString()}</span>
+        <span>{experience!.endDate?.toLocaleDateString()}</span>
       </div>
 
       <p className="mt-4 text-neutral-500 text-xs line-clamp-3 mb-4">
-        {experience.description}
+        {experience!.description}
       </p>
 
       {!readOnly && (
         <div className="flex items-center gap-x-1   mt-auto z-20 ">
           <TipTool side="left" title="Edit">
             <Link
-              href={`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience/${experience.id}`}
+              href={`/dashboard/${params.profileId}/portfolio/${params.portfolioId}/experience/${experience!.id}`}
             >
               <Button
                 size={"icon"}
