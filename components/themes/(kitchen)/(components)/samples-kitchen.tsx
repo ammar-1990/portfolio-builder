@@ -98,21 +98,22 @@ const SamplesKitchen = ({ portfolio }: Props) => {
               </div>
               <div className="w-full md:w-1/2 flex-shrink-0">
                 <Swiper
-                 speed={2000}
-                 spaceBetween={0}
-                 mousewheel={{
-                   eventsTarget: "container",
-                   forceToAxis: false,
-                   invert: false,
-                 }}
-                 slidesPerView={1}
-                 
-                 autoplay={{
-                   delay: 1500,
-                   disableOnInteraction: true,
-                   pauseOnMouseEnter: true,
-                 }}
-                 loop={true}
+                speed={2000}
+                spaceBetween={10}
+                effect="slide"
+                mousewheel={{
+                  eventsTarget: "container",
+                  forceToAxis: false,
+                  invert: false,
+                }}
+                slidesPerView={1.3}
+                autoplay={{
+                  delay: 1500,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+               
+                }}
+                loop={true}
                 >
                   {project.images.map((image) => (
                     <SwiperSlide key={image.id}
