@@ -38,6 +38,7 @@ const SamplesKitchen = ({ portfolio }: Props) => {
       <Swiper
         speed={2000}
         spaceBetween={10}
+        effect="slide"
         mousewheel={{
           eventsTarget: "container",
           forceToAxis: false,
@@ -46,8 +47,9 @@ const SamplesKitchen = ({ portfolio }: Props) => {
         slidesPerView={1.3}
         autoplay={{
           delay: 1500,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
           pauseOnMouseEnter: true,
+       
         }}
         loop={true}
       >
