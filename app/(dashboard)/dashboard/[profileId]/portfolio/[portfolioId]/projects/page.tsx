@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 type Props = {
   params: { portfolioId: string; profileId: string };
 };
-export const runtime = 'edge'
+export const revalidate = 0;
 
 
 const page = async ({ params }: Props) => {
