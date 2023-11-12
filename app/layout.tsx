@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: 'build your portfolio with simple steps',
 }
 
+export const runtime = 'edge'
+
 export default function RootLayout({
   children,
 }: {
