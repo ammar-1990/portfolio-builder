@@ -3,6 +3,8 @@ import db from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 
+export const runtime = 'edge'
+
 export async function PATCH(req:Request,{params}:{params:{profileId:string,portfolioId:string,projectId:string}}){
 
     try {

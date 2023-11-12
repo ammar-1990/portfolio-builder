@@ -2,6 +2,9 @@ import { getCurrentProfile } from "@/lib/getCurrentProfile";
 import db from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+
+export const runtime = 'edge'
+
 export async function POST(req:Request,{params}:{params:{profileId:string,portfolioId:string}}){
 
     try {
