@@ -11,7 +11,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 type Props = {
   params: { portfolioId: string; profileId: string };
 };
-export const revalidate = 0;
+export const runtime = 'edge'
+
+
 const page = async ({ params }: Props) => {
   const projects = await db.project.findMany({
     where: {
